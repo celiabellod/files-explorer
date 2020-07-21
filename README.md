@@ -3,11 +3,11 @@
 - Si le dossier courant est accessible il faut l'afficher.
 
 
-###Le répertoire de départ
+### Le répertoire de départ
 Au lancement de la page:
 - Vérifier le répertoire courant
 - Si le dossier start n'existe pas alors il est crée et ouvert.
 - Si le dossier start existe, il est ouvert directement.
 
 
-###Afficher le fil d'Ariane
+### Afficher le fil d'Ariane
