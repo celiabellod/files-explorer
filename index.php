@@ -1,4 +1,17 @@
-<?php//Le répertoire de départ
+<?php
+$url = getcwd();
+$current_dir = scandir($url);
+
+//Récupérer l'url du répertoire de travail courant et afficher le contenu du dossier
+if($url == FALSE){
+  echo "Vous n'avez pas accès au dossier";
+} else{
+  $dir_start = scandir(getcwd());
+  print_r($dir_start);
+}
+
+
+//Le répertoire de départ
 if($url == FALSE){
   echo "Vous n'avez pas accès au dossier";
 } else {
