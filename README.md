@@ -9,5 +9,7 @@ Au lancement de la page:
 - Si le dossier start n'existe pas alors il est crée et ouvert.
 - Si le dossier start existe, il est ouvert directement.
 
+### Faire en sorte que . et .. n’apparaissent pas
+- A l'affichage du dossier demandé, le "." et ".." sont remplacer par une valeur NULL.
 
 ### Afficher le fil d'Ariane
