@@ -7,7 +7,7 @@ if($url == FALSE){
   echo "Vous n'avez pas accès au dossier";
 } else{
   $dir_start = scandir(getcwd());
-  print_r($dir_start);
+  /*print_r($dir_start);*/
 }
 
 
@@ -20,13 +20,20 @@ if($url == FALSE){
   if(in_array($start_dir, $current_dir)){
     chdir($path_start);
     $dir_start = scandir(getcwd());
-    print_r($dir_start);
+    //print_r($dir_start);
 
   } else {
     mkdir($path_start);
     chdir($path_start);
     $dir_start =scandir(getcwd());
-    print_r($dir_start);
+    //print_r($dir_start);
   }
 }
+
+
+
+// Faire en sorte que . et .. n’apparaissent pas
+$dir_start[0] = '';
+$dir_start[1] = '';
+print_r($dir_start );
 ?>
