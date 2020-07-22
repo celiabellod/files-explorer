@@ -26,13 +26,35 @@ if($url == FALSE){
     chdir($path_start);
     $dir_start = scandir(getcwd());
   }
-}
-
   foreach ($current_dir as $value) {
     if($value == "start"){
         $breadCrumbs = implode(DIRECTORY_SEPARATOR, array_slice($dir_start,2));
-        echo $breadCrumbs;
+        //echo $breadCrumbs;
       }
+    }
+}
+
+//FILE HIDE && SHOW
+$file = $dir_start[3];
+$hideFile = hide($file);
+$keyHideFile = array_keys($hideFile);
+$fileHideShow = show($hideFile);
+
+function hide($file) {
+  $fileArray = explode(" ", $file);
+   foreach ($fileArray as $key => $value) {
+     $key = ' ';
+      $fileArray = [
+        $key => $value
+      ];
+      return $fileArray;
+  }
+}
+
+function show($hideFile) {
+  foreach ($hideFile as $value) {
+    echo $value;
+  }
 }
 
 ?>

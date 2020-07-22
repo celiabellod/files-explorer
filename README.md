@@ -45,3 +45,33 @@ foreach ($current_dir as $value) {
       echo $breadCrumbs;
     }
 ```
+
+### Afficher / masquer les fichiers cachés
+- Si on veut masquer un fichier, la valeur de la position du fichier dans l'url demandé est converti en tableau et la valeur de clé est changé en une chaine de caractère vide.
+Puis la clé est affiché.
+
+- Si on veut afficher un fichier masqué, la valeur de la position du fichier dans l'url demandé est converti en tableau et la valeur est affiché.
+
+```
+$file = $dir_start[3];
+$hideFile = hide($file);
+$keyHideFile = array_keys($hideFile);
+$fileHideShow = show($hideFile);
+
+function hide($file) {
+  $fileArray = explode(" ", $file);
+   foreach ($fileArray as $key => $value) {
+     $key = ' ';
+      $fileArray = [
+        $key => $value
+      ];
+      return $fileArray;
+  }
+}
+
+function show($hideFile) {
+  foreach ($hideFile as $value) {
+    echo $value;
+  }
+}
+```
