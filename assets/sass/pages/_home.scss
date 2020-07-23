@@ -1,22 +1,68 @@
 .container-dir{
-  display: flex;
   margin-left: 12vw;
-  margin-top: 6vh;
+  text-align: center;
+  border-left: 2px solid grey;
+  padding-left: 3vw;
+  padding-top: 4vh;
+  height: 100%;
   img {
-    width: 10vw;
+    width: 4vw;
     height: auto;
+  }
+  p{
+    margin-top: 2vh;
+    margin-bottom: 6vh;
   }
 }
 
 .logo-dir2{
-  margin-left: 4vw;
+  margin-left: 2vw;
 }
 
 .container-explorer{
-  width: 75vw;
-  height: 90vh;
-  border: 2px solid grey;
+  width: 65vw;
+  height: 80vh;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   background-color: white;
   margin-top: 6vh;
-  margin-left: 6vh;
+  margin-left: 8vh;
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+}
+
+.close {
+  display: flex;
+  justify-content: flex-end;
+  img {
+    width: 1vw;
+    height: 2vh;
+    padding: .8rem;
+  }
+}
+
+.container-close{
+  width: 4vw;
+  display: flex;
+  justify-content: center;
+  transition: 0.2s;
+  &:hover{
+    background-color: red;
+  }
+}
+
+.container-close img:hover{
+  filter: invert(100%);
+}
+
+.function {
+  background-color: rgb(250, 230,230);
+  display: flex;
+  height: 12vh;
+  align-items: center;
+  p {
+    margin-left: 2vw;
+  }
 }

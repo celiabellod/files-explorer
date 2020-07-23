@@ -1,49 +1,128 @@
+@font-face {
+  font-family: "Varta";
+  src: url("../fonts/Varta-Regular.eot");
+  src: url("../fonts/Varta-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/Varta-Regular.woff2") format("woff2"), url("../fonts/Varta-Regular.woff") format("woff"), url("../fonts/Varta-Regular.ttf") format("truetype"), url("../fonts/Varta-Regular.svg#Varta-Regular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 body {
-  background-image: url("../images/background.jpg");
+  font-family: Varta;
+}
+
+h5 {
+  font-size: 1vw;
+}
+
+body {
+  background-image: url("../images/background.png");
   background-size: cover;
 }
 
 .breadCrumbs {
-  display: flex;
-  font-size: 1.5vw;
+  font-size: 1vw;
   margin-left: 12vw;
-  margin-top: 4vh;
   width: 50%;
-  padding: 0.8rem;
+  padding-top: 2vh;
+  border-left: 2px solid grey;
 }
-.breadCrumbs li {
+.breadCrumbs ul {
+  display: flex;
+  margin-bottom: 0;
+}
+.breadCrumbs ul li {
+  list-style: inside url("../images/right-arrow.svg");
+  margin-right: 2vw;
+}
+
+.img_directoryMini {
+  width: 0.8vw;
+  height: 2.5vh;
+  margin-right: 1vw;
+}
+
+.nav-aside {
+  position: absolute;
+  margin-top: -9vh;
+}
+.nav-aside h5 {
+  margin-left: 1vw;
+}
+.nav-aside ul {
+  margin-top: -2vh;
+}
+.nav-aside ul li {
   list-style: none;
-  margin-right: 10px;
-}
-.breadCrumbs li::after {
-  content: ">";
-  padding-left: 50px;
-}
-.breadCrumbs li:last-child::after {
-  content: "";
+  margin-left: 0.5vw;
 }
 
 .container-dir {
-  display: flex;
   margin-left: 12vw;
-  margin-top: 6vh;
+  text-align: center;
+  border-left: 2px solid grey;
+  padding-left: 3vw;
+  padding-top: 4vh;
+  height: 100%;
 }
 .container-dir img {
-  width: 10vw;
+  width: 4vw;
   height: auto;
+}
+.container-dir p {
+  margin-top: 2vh;
+  margin-bottom: 6vh;
 }
 
 .logo-dir2 {
-  margin-left: 4vw;
+  margin-left: 2vw;
 }
 
 .container-explorer {
-  width: 75vw;
-  height: 90vh;
-  border: 2px solid grey;
+  width: 65vw;
+  height: 80vh;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   background-color: white;
   margin-top: 6vh;
-  margin-left: 6vh;
+  margin-left: 8vh;
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+}
+
+.close {
+  display: flex;
+  justify-content: flex-end;
+}
+.close img {
+  width: 1vw;
+  height: 2vh;
+  padding: 0.8rem;
+}
+
+.container-close {
+  width: 4vw;
+  display: flex;
+  justify-content: center;
+  transition: 0.2s;
+}
+.container-close:hover {
+  background-color: red;
+}
+
+.container-close img:hover {
+  filter: invert(100%);
+}
+
+.function {
+  background-color: #fae6e6;
+  display: flex;
+  height: 12vh;
+  align-items: center;
+}
+.function p {
+  margin-left: 2vw;
 }
 
 /*# sourceMappingURL=style.css.map */
