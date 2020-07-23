@@ -53,10 +53,12 @@ Puis la clé est affiché.
 - Si on veut afficher un fichier masqué, la valeur de la position du fichier dans l'url demandé est converti en tableau et la valeur est affiché.
 
 ```
-$file = $dir_start[3];
-$hideFile = hide($file);
-$keyHideFile = array_keys($hideFile);
-$fileHideShow = show($hideFile);
+foreach ($startArray as $value) {
+  $file = $value;
+  $hideFile = hide($file);
+  $keyHideFile = array_keys($hideFile);
+  $fileHideShow = show($hideFile);
+}
 
 function hide($file) {
   $fileArray = explode(" ", $file);

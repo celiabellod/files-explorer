@@ -1,0 +1,22 @@
+.breadCrumbs {
+  display: flex;
+  font-size: 1.5vw;
+  margin-left: 12vw;
+  margin-top: 4vh;
+  width: 50%;
+  padding : .8rem;
+  li {
+    list-style: none;
+    margin-right: 10px;
+    &::after {
+      content: '>';
+      padding-left:50px;
+    }
+    &:last-child {
+      &::after {
+        content: '';
+      }
+    }
+
+  }
+}

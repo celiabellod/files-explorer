@@ -1,0 +1,19 @@
+{
+  "name": "files-explorer",
+  "version": "1.0.0",
+  "description": "Programing files explorer from CELIA BELLOD && JULES CHABAUD",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./assets/sass/main.scss:./assets/css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JulesChabaud/files-explorer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JulesChabaud/files-explorer/issues"
+  },
+  "homepage": "https://github.com/JulesChabaud/files-explorer#readme"
+}
