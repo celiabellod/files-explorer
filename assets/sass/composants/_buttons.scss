@@ -1,9 +1,36 @@
+//VARIABLES
+
+//--Dimension
+$toggleHeight: 20px;
+$toggleWidth: 40px;
+$borderWidth: 3px;
+$toggleBtnRadius: $toggleHeight - 10px;
+
+//--Colors ON
+
+$bgColor--night: #fae6e6;
+$borderColor--night: #4c241d;
+$toggleBtn-bgColor--night: #fff;
+$toggleBtn-borderColor--night: #4c241d;
+
+//--Colors OFF
+$bgColor--day: #b5a19c;
+$borderColor--day: #4c241d;
+$toggleBtn-bgColor--day: #fff;
+$toggleBtn-borderColor--day: #4c241d;
+
+
 //All
 .toggle {
-    display: block;
+    display: flex;
+    flex-direction: column-reverse;
     text-align: center;
-    margin-top: 40px;
-  user-select: none;
+    margin-top: 4vh;
+    user-select: none;
+
+    p{
+      margin-right: 1.8vw;
+    }
 }
     .toggle--checkbox {
     display: none;
@@ -37,23 +64,7 @@
 
 //Like
 
-$toggleHeight: 70px;
-$toggleWidth: 125px;
-$borderWidth: 5px;
-$toggleBtnRadius: $toggleHeight - 14px;
 
-$bgColor--night: #b5a19c;
-$borderColor--night: #4c241d;
-$toggleBtn-bgColor--night: #fff;
-$toggleBtn-borderColor--night: #4c241d;
-
-$bgColor--day: #fae6e6;
-$borderColor--day: #4c241d;
-$toggleBtn-bgColor--day: #fff;
-$toggleBtn-borderColor--day: #4c241d;
-
-$cloud-borderColor: #d3d3d3;
-$cloud-bgColor: #fff;
 
 .toggle--daynight,
 .toggle--like {
@@ -108,21 +119,7 @@ $cloud-bgColor: #fff;
                 animation-timing-function: ease-in-out;
             }
 
-            > .toggle--feature {
-                opacity: 0;
-                box-shadow: rgba(255,255,255,0.1) 30px -3px 0 -4px,
-                            rgba(255,255,255,0.1) 12px 10px 0 -5px,
-                            #fff 38px 18px 0 -3px,
-                            rgba(255,255,255,0.1) 32px 34px 0 -4px,
-                            #fff 20px 24px 0 -5.5px,
-                            rgba(255,255,255,0.1) 5px 38px 0 -3px;
-                animation: none;
 
-                &:before {
-                    left: 25px;
-                    transform: rotate(70deg);
-                }
-            }
         }
     }
 }

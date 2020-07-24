@@ -21,26 +21,37 @@ if($url == FALSE){ // if url return false
 }
 ?>
 
+
+  <?php
+    if (isset($_POST["showHideFile"])){
+      echo "<input type='hidden' id='showFile' name='' value=''>";
+    }
+
+  ?>
+
   <div class="container-explorer">
     <div class="close">
       <div class="container-close">
         <img src="assets/images/close.png">
       </div>
     </div>
-    <div class="function">
-
-
-      <div class="toggle toggle--daynight">
-          <input type="checkbox" id="toggle--daynight" class="toggle--checkbox">
-          <label class="toggle--btn" for="toggle--daynight"><span class="toggle--feature"></span></label>
-      </div>
+    <form class="function" method="post" action="index.php">
 
 
       <p>Couper</p>
       <p>Copier</p>
       <p>Coller</p>
       <p>Supprimer</p>
-    </div>
+
+      <div class="toggle toggle--daynight">
+          <p>Elements masqués</p>
+          <input type="checkbox" id="toggle--daynight" class="toggle--checkbox" name="showHideFile" value="showFile">
+          <label class="toggle--btn" for="toggle--daynight"><span class="toggle--feature"></span></label>
+      </div>
+
+      <input type="submit" value="appliquer" >
+
+    </form>
 
     <nav>
       <div class="breadCrumbs">
