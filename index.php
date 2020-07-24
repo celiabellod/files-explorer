@@ -1,4 +1,26 @@
-<?php include 'header.php' ?>
+<?php include 'header.php';
+$url = getcwd(); //string of url to start
+$arrayUrlBase = scandir($url); // array of url to start
+
+//Le répertoire de départ
+if($url == FALSE){ // if url return false
+  echo "Vous n'avez pas accès au dossier";
+} else { // if url return true
+  $nameStartDirectory = "start"; //name of the first directory
+  $pathStart = getcwd() . DIRECTORY_SEPARATOR . $nameStartDirectory; //path of the first directory
+
+  if(in_array($nameStartDirectory, $arrayUrlBase)){ // if first directory exists in projet architect
+    chdir($pathStart); //go the the first directory
+  } else { // if first directory doesn't exists in projet architect
+    mkdir($pathStart); // create first directory
+    chdir($pathStart); //go the the first directory
+  }
+  $arrayUrlStart = scandir(getcwd()); // put all the under directory inside array
+  $newUrlWithoutParent = implode(DIRECTORY_SEPARATOR, array_slice($arrayUrlStart, 2)); // string url without . et ..
+  $arrayUrlWithoutParent = explode(DIRECTORY_SEPARATOR, $newUrlWithoutParent);  // array url without . et ..
+}
+?>
+
   <div class="container-explorer">
     <div class="close">
       <div class="container-close">
@@ -6,27 +28,62 @@
       </div>
     </div>
     <div class="function">
+
+
+      <div class="toggle toggle--daynight">
+          <input type="checkbox" id="toggle--daynight" class="toggle--checkbox">
+          <label class="toggle--btn" for="toggle--daynight"><span class="toggle--feature"></span></label>
+      </div>
+
+
       <p>Couper</p>
       <p>Copier</p>
       <p>Coller</p>
       <p>Supprimer</p>
     </div>
+
     <nav>
       <div class="breadCrumbs">
         <ul>
           <img src="assets/images/directory_mini.png" class="img_directoryMini">
-          <li>Celia</li>
-          <li>Jules</li>
-          <li>Laulau</li>
+
+            <?php
+              if($arrayUrlWithoutParent[0] != ''){
+                foreach ($arrayUrlWithoutParent as $value) {
+                  if(isset($_POST['showHideFile'])){
+                    echo "<li>$value</li>";
+                  } else {
+                    if ($value == strstr($value, '.')) {
+                      echo "";
+                    } else {
+                      echo "<li>$value</li>";
+                    }
+                  }
+                }
+              }
+            ?>
+
         </ul>
       </div>
 
       <div class="nav-aside">
-        <h5>Directory1</h5>
         <ul>
-          <li><img src="assets/images/directory_mini.png" class="img_directoryMini">Celia</li>
-          <li><img src="assets/images/directory_mini.png" class="img_directoryMini">Jules</li>
-          <li><img src="assets/images/directory_mini.png" class="img_directoryMini">Laulau</li>
+          <?php
+            if($arrayUrlWithoutParent[0] != ''){
+              foreach ($arrayUrlWithoutParent as $value) {
+                if(isset($_POST['showHideFile'])){
+                  echo "<li><img src='assets/images/directory_mini.png' class='img_directoryMini'>$value</li>";
+                } else {
+                  if ($value == strstr($value, '.')) {
+                    echo "";
+                  } else {
+                    echo "<li><img src='assets/images/directory_mini.png' class='img_directoryMini'>$value</li>";
+                  }
+
+                }
+              }
+            }
+          ?>
         </ul>
       </div>
     </nav>
@@ -34,37 +91,27 @@
     <div class="container-dir">
 
       <div class="row">
-        <div>
-          <img src="assets/images/directory.png" alt="">
-          <p>directory1</p>
-        </div>
-        <div class="logo-dir2">
-          <img src="assets/images/directory.png" alt="">
-          <p>directory2</p>
-        </div>
-        <div class="logo-dir2">
-          <img src="assets/images/directory.png" alt="">
-          <p>directory3</p>
-        </div>
-        <div class="logo-dir2">
-          <img src="assets/images/directory.png" alt="">
-          <p>directory4</p>
-        </div>
-      </div>
+        <?php if($arrayUrlWithoutParent[0] != ''){
+          foreach ($arrayUrlWithoutParent as $value) {
+            if(isset($_POST['showHideFile'])){
+              echo "<div class='logo-dir2'>
+                      <img src='assets/images/directory.png' alt=''>
+                      <p>$value</p>
+                    </div>";
+            } else {
+                if ($value == strstr($value, '.')) {
+                  echo "";
+                } else {
+                  echo "<div class='logo-dir2'>
+                          <img src='assets/images/directory.png' alt=''>
+                          <p>$value</p>
+                        </div>";
+                }
 
-      <div class="row">
-        <div>
-          <img src="assets/images/directory.png" alt="">
-          <p>directory5</p>
-        </div>
-        <div class="logo-dir2">
-          <img src="assets/images/directory.png" alt="">
-          <p>directory6</p>
-        </div>
-        <div class="logo-dir2">
-          <img src="assets/images/directory.png" alt="">
-          <p>directory7</p>
-        </div>
+            }
+          }
+        } ?>
+
       </div>
     </div>
   </div>

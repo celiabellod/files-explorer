@@ -1,4 +1,5 @@
 <?php
+
 $url = getcwd();
 $current_dir = scandir($url);
 
@@ -7,7 +8,7 @@ if($url == FALSE){
   echo "Vous n'avez pas accès au dossier";
 } else{
   $dir_start = scandir(getcwd());
-  /*print_r($dir_start);*/
+
 }
 
 //Le répertoire de départ

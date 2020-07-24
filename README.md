@@ -47,33 +47,25 @@ foreach ($current_dir as $value) {
 ```
 
 ### Afficher / masquer les fichiers cachés
-- Si on veut masquer un fichier, la valeur de la position du fichier dans l'url demandé est converti en tableau et la valeur de clé est changé en une chaine de caractère vide.
-Puis la clé est affiché.
+Par défaut les fichiers avec un '.' au début de leur nom sont cachés.
+- Si la case est cochée (on) alors les fichiers cachés sont affichés dans l'explorateur.
+- Si la case n'est pas cochée (off) alors les fichiers cachés ne sont pas affichés dans l'explorateur
 
-- Si on veut afficher un fichier masqué, la valeur de la position du fichier dans l'url demandé est converti en tableau et la valeur est affiché.
 
 ```
-foreach ($startArray as $value) {
-  $file = $value;
-  $hideFile = hide($file);
-  $keyHideFile = array_keys($hideFile);
-  $fileHideShow = show($hideFile);
-}
-
-function hide($file) {
-  $fileArray = explode(" ", $file);
-   foreach ($fileArray as $key => $value) {
-     $key = ' ';
-      $fileArray = [
-        $key => $value
-      ];
-      return $fileArray;
+if(isset($_POST['showHideFile'])){
+  echo "<div class='logo-dir2'>
+          <img src='assets/images/directory.png' alt=''>
+          <p>$value</p>
+        </div>";
+} else {
+    if ($value == strstr($value, '.')) {
+      echo "";
+    } else {
+      echo "<div class='logo-dir2'>
+              <img src='assets/images/directory.png' alt=''>
+              <p>$value</p>
+            </div>";
+    }
   }
-}
-
-function show($hideFile) {
-  foreach ($hideFile as $value) {
-    echo $value;
-  }
-}
 ```
