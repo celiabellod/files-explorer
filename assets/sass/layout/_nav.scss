@@ -20,7 +20,7 @@
 }
 .nav-aside {
   position: absolute;
-  margin-top: -9vh;
+  margin-top: -1.8vh;
   h5 {
     margin-left: 1vw;
   }
@@ -29,6 +29,9 @@
     li {
       list-style: none;
       margin-left: 0.5vw;
+      display: flex;
+      align-items: start;
+      margin-top: 1vh;
     }
   }
 }
