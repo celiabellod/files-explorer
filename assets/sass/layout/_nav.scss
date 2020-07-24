@@ -1,0 +1,37 @@
+.breadCrumbs {
+  font-size: 1vw;
+  margin-left: 12vw;
+  width: 50%;
+  padding-top: 2vh;
+  border-left: 2px solid grey;
+  ul{
+    display: flex;
+    margin-bottom: 0;
+    li {
+      list-style: inside url('../images/right-arrow.svg');
+      margin-right: 2vw;
+    }
+  }
+}
+.img_directoryMini{
+  width: 0.8vw;
+  height: 2.5vh;
+  margin-right: 1vw;
+}
+.nav-aside {
+  position: absolute;
+  margin-top: -1.8vh;
+  h5 {
+    margin-left: 1vw;
+  }
+  ul {
+    margin-top: -2vh;
+    li {
+      list-style: none;
+      margin-left: 0.5vw;
+      display: flex;
+      align-items: start;
+      margin-top: 1vh;
+    }
+  }
+}

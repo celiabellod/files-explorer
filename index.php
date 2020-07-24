@@ -1,39 +1,118 @@
-<?php
-$url = getcwd();
-$current_dir = scandir($url);
-
-//Récupérer l'url du répertoire de travail courant et afficher le contenu du dossier
-if($url == FALSE){
-  echo "Vous n'avez pas accès au dossier";
-} else{
-  $dir_start = scandir(getcwd());
-  /*print_r($dir_start);*/
-}
-
+<?php include 'header.php';
+$url = getcwd(); //string of url to start
+$arrayUrlBase = scandir($url); // array of url to start
 
 //Le répertoire de départ
-if($url == FALSE){
+if($url == FALSE){ // if url return false
   echo "Vous n'avez pas accès au dossier";
-} else {
-  $start_dir = "start";
-  $path_start = getcwd() . DIRECTORY_SEPARATOR . $start_dir;
-  if(in_array($start_dir, $current_dir)){
-    chdir($path_start);
-    $dir_start = scandir(getcwd());
-    //print_r($dir_start);
+} else { // if url return true
+  $nameStartDirectory = "start"; //name of the first directory
+  $pathStart = getcwd() . DIRECTORY_SEPARATOR . $nameStartDirectory; //path of the first directory
 
-  } else {
-    mkdir($path_start);
-    chdir($path_start);
-    $dir_start =scandir(getcwd());
-    //print_r($dir_start);
+  if(in_array($nameStartDirectory, $arrayUrlBase)){ // if first directory exists in projet architect
+    chdir($pathStart); //go the the first directory
+  } else { // if first directory doesn't exists in projet architect
+    mkdir($pathStart); // create first directory
+    chdir($pathStart); //go the the first directory
   }
+  $arrayUrlStart = scandir(getcwd()); // put all the under directory inside array
+  $newUrlWithoutParent = implode(DIRECTORY_SEPARATOR, array_slice($arrayUrlStart, 2)); // string url without . et ..
+  $arrayUrlWithoutParent = explode(DIRECTORY_SEPARATOR, $newUrlWithoutParent);  // array url without . et ..
 }
-
-
-
-// Faire en sorte que . et .. n’apparaissent pas
-$dir_start[0] = '';
-$dir_start[1] = '';
-print_r($dir_start );
 ?>
+
+  <div class="container-explorer">
+    <div class="close">
+      <div class="container-close">
+        <img src="assets/images/close.png">
+      </div>
+    </div>
+    <div class="function">
+
+
+      <div class="toggle toggle--daynight">
+          <input type="checkbox" id="toggle--daynight" class="toggle--checkbox">
+          <label class="toggle--btn" for="toggle--daynight"><span class="toggle--feature"></span></label>
+      </div>
+
+
+      <p>Couper</p>
+      <p>Copier</p>
+      <p>Coller</p>
+      <p>Supprimer</p>
+    </div>
+
+    <nav>
+      <div class="breadCrumbs">
+        <ul>
+          <img src="assets/images/directory_mini.png" class="img_directoryMini">
+
+            <?php
+              if($arrayUrlWithoutParent[0] != ''){
+                foreach ($arrayUrlWithoutParent as $value) {
+                  if(isset($_POST['showHideFile'])){
+                    echo "<li>$value</li>";
+                  } else {
+                    if ($value == strstr($value, '.')) {
+                      echo "";
+                    } else {
+                      echo "<li>$value</li>";
+                    }
+                  }
+                }
+              }
+            ?>
+
+        </ul>
+      </div>
+
+      <div class="nav-aside">
+        <ul>
+          <?php
+            if($arrayUrlWithoutParent[0] != ''){
+              foreach ($arrayUrlWithoutParent as $value) {
+                if(isset($_POST['showHideFile'])){
+                  echo "<li><img src='assets/images/directory_mini.png' class='img_directoryMini'>$value</li>";
+                } else {
+                  if ($value == strstr($value, '.')) {
+                    echo "";
+                  } else {
+                    echo "<li><img src='assets/images/directory_mini.png' class='img_directoryMini'>$value</li>";
+                  }
+
+                }
+              }
+            }
+          ?>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container-dir">
+
+      <div class="row">
+        <?php if($arrayUrlWithoutParent[0] != ''){
+          foreach ($arrayUrlWithoutParent as $value) {
+            if(isset($_POST['showHideFile'])){
+              echo "<div class='logo-dir2'>
+                      <img src='assets/images/directory.png' alt=''>
+                      <p>$value</p>
+                    </div>";
+            } else {
+                if ($value == strstr($value, '.')) {
+                  echo "";
+                } else {
+                  echo "<div class='logo-dir2'>
+                          <img src='assets/images/directory.png' alt=''>
+                          <p>$value</p>
+                        </div>";
+                }
+
+            }
+          }
+        } ?>
+
+      </div>
+    </div>
+  </div>
+<?php include 'footer.php' ?>
