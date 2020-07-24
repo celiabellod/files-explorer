@@ -4,7 +4,7 @@
   border-left: 2px solid grey;
   padding-left: 3vw;
   padding-top: 4vh;
-  height: 100%;
+  height: 60vh;
   img {
     width: 4vw;
     height: auto;
@@ -60,9 +60,15 @@
 .function {
   background-color: rgb(250, 230,230);
   display: flex;
-  justify-content: flex-end;
-  height: 12vh;
+  justify-content: space-between;
+  height: 17vh;
   align-items: center;
+  .function-applicate{
+    margin-left: 3.5vw;
+  }
+  .function_firstparts{
+    display: flex;
+  }
   p {
     margin-left: 2vw;
   }
