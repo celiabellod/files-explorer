@@ -10,7 +10,6 @@ if($url == FALSE){
   $dir_start = scandir(getcwd());
 
 }
-
 //Le répertoire de départ
 if($url == FALSE){
   echo "Vous n'avez pas accès au dossier";
