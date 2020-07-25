@@ -1,45 +1,50 @@
 <?php include 'header.php';
 $url = getcwd(); //string of url to start
 $arrayUrlBase = scandir($url); // array of url to start
+$nameStartDirectory = "start"; //name of the first directory
 
-if(isset($_SESSION['urlStart'])) {
-  $pathStart = $_SESSION['urlStart'];
-  print_r(scandir($pathStart));
-  $arrayPathStart = scandir($pathStart);
+
+if(isset($_SESSION['allDirectories'])) {
+  $allDirectories = $_SESSION['allDirectories'];
+} else {
+  $allDirectories = [];
 }
-if(isset($_SESSION['urlCurrent'])) {
-  $pathCurrent = $_SESSION['urlCurrent'];
-  print_r(scandir($pathCurrent));
-  $arrayPathCurrent = scandir($pathCurrent);
+
+if(isset($_SESSION['pathCurrent'])) {
+  $pathCurrent = $_SESSION['pathCurrent'];
 }
+
 //Le répertoire de départ
 if($url == FALSE){ // if url return false
   echo "Vous n'avez pas accès au dossier";
 } else { // if url return true
-  $nameStartDirectory = "start"; //name of the first directory
-  $pathStart = getcwd() . DIRECTORY_SEPARATOR . $nameStartDirectory; //path of the first directory
-  if(!isset($_POST["directory"])){
+
     if(in_array($nameStartDirectory, $arrayUrlBase)){ // if first directory exists in projet architect
-      chdir($pathStart); //go the the first directory
+      if(!isset($_POST["directory"])){ // if no directory select
+        $pathCurrent = getcwd() . DIRECTORY_SEPARATOR . $nameStartDirectory; //path of the first directory
+        chdir($pathCurrent); //go the the first directory
+        $arrayUrl= scandir($pathCurrent); // put all the under directory inside array
+      } else {
+        $directory = $_POST["directory"];
+        if(!in_array($directory, $allDirectories)){
+          array_push($allDirectories, $directory);
+        }
+        $pathCurrent = $pathCurrent . DIRECTORY_SEPARATOR . $directory;
+        chdir($pathCurrent);
+        $arrayUrl= scandir($pathCurrent); // put all the under directory inside array
+      }
     } else { // if first directory doesn't exists in projet architect
-      mkdir($pathStart); // create first directory
-      chdir($pathStart); //go the the first directory
-    }
-    $arrayUrlStart = scandir($pathStart); // put all the under directory inside array
-    $newUrlWithoutParent = implode(DIRECTORY_SEPARATOR, array_slice($arrayUrlStart, 2)); // string url without . et ..
-    $arrayUrlWithoutParent = explode(DIRECTORY_SEPARATOR, $newUrlWithoutParent);
-  } else {
-    $directory = $_POST["directory"];
-    $pathCurrent = $pathStart . DIRECTORY_SEPARATOR . $directory;
-    chdir($pathCurrent);
-    $arrayUrlStart = scandir($pathCurrent); // put all the under directory inside array
-    $newUrlWithoutParent = implode(DIRECTORY_SEPARATOR, array_slice($arrayUrlStart, 2)); // string url without . et ..
-    $arrayUrlWithoutParent = explode(DIRECTORY_SEPARATOR, $newUrlWithoutParent);
-    $_SESSION['urlCurrent'] = $pathCurrent;
+      $pathCurrent = getcwd() . DIRECTORY_SEPARATOR . $nameStartDirectory; //path of the first directory
+      mkdir($pathCurrent); // create first directory
+      chdir($pathCurrent); //go the the first directory
+      $arrayUrl = scandir($pathCurrent); // put all the under directory inside array
     }
 
-    // array url without . et ..
-    $_SESSION['urlStart'] = $pathStart;
+    $newUrlWithoutParent = implode(DIRECTORY_SEPARATOR, array_slice($arrayUrl, 2)); // string url without . et ..
+    $arrayUrlWithoutParent = explode(DIRECTORY_SEPARATOR, $newUrlWithoutParent);     // array url without . et ..
+
+    $_SESSION['pathCurrent'] = $pathCurrent;
+    $_SESSION['allDirectories'] = $allDirectories;
 
 }
 ?>
@@ -87,14 +92,15 @@ if($url == FALSE){ // if url return false
             <img src="assets/images/directory_mini.png" class="img_directoryMini">
 
               <?php
-                  foreach ($arrayPathStart as $value) {
-                      if ($value == strstr($value, '.')) {
-                        echo "";
-                      } else {
-                        echo "<li>$value</li>";
-                      }
+              if(!empty($allDirectories)){
+                foreach ($allDirectories as $key => $value) {
+                    if ($value == strstr($value, '.')) {
+                      echo "";
+                    } else {
+                      echo "<li>$value</li>";
                     }
-
+                  }
+              }
               ?>
 
           </ul>
@@ -103,20 +109,19 @@ if($url == FALSE){ // if url return false
         <div class="nav-aside">
           <ul>
             <?php
-              if($arrayUrlWithoutParent[0] != ''){
-                foreach ($arrayUrlWithoutParent as $value) {
-                  if(isset($_POST['showHideFile'])){
-                    echo "<li><img src='assets/images/directory_mini.png' class='img_directoryMini'>$value</li>";
+            if(!empty($allDirectories)){
+              foreach ($allDirectories as $value) {
+                if(isset($_POST['showHideFile'])){
+                  echo "<li><img src='assets/images/directory_mini.png' class='img_directoryMini'>$value</li>";
+                } else {
+                  if ($value == strstr($value, '.')) {
+                    echo "";
                   } else {
-                    if ($value == strstr($value, '.')) {
-                      echo "";
-                    } else {
-                      echo "<li><button type='submit' name='directory' value='$value'><img src='assets/images/directory_mini.png' class='img_directoryMini'>$value</button></li>";
-                    }
-
+                    echo "<li><button type='submit' name='directory' value='$value'><img src='assets/images/directory_mini.png' class='img_directoryMini'>$value</button></li>";
                   }
                 }
-              }
+            }
+          }
             ?>
           </ul>
         </div>
