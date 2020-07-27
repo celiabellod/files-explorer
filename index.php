@@ -110,9 +110,13 @@ if($url == FALSE){ // if url return false
 
         <div class="nav-aside">
           <ul>
-            <?php
-
-            if(!isset($_POST['directory']) && !isset($_POST['showHideFile'])){
+            <?php/*
+            $point = '..' . DIRECTORY_SEPARATOR;
+            $_SESSION['point'] = mkmap($point . $nameStartDirectory);
+            if(isset($_SESSION['point'])){
+              echo $_SESSION['point'];
+            }*/
+            /*if(!isset($_POST['directory']) && !isset($_POST['showHideFile'])){
                 $point = '..' . DIRECTORY_SEPARATOR;
                 mkmap($point . $nameStartDirectory);
             } else if(isset($_POST['directory'])) {
@@ -140,7 +144,7 @@ if($url == FALSE){ // if url return false
                 mkmap($point . $nameStartDirectory);
               }
             }
-            $_SESSION['point'] = $point;
+            $_SESSION['point'] = $point;*/
 
 
 
