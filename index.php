@@ -1,33 +1,11 @@
 <?php include 'header.php';
-function mkmap($dir){
-    $folder = opendir ($dir);
-
-    while ($file = readdir ($folder)) {
-        if ($file != "." && $file != "..") {
-            $pathfile = $dir.DIRECTORY_SEPARATOR.$file;
-            echo "<li><a href=$pathfile>$file</a></li>";
-            if(filetype($pathfile) == 'dir'){
-                mkmap($pathfile);
-            }
-        }
-    }
-    closedir ($folder);
-}
-
-//mkmap('start');
-
+require('functions.php');
 
 
 $url = getcwd(); //string of url to start
 $arrayUrlBase = scandir($url); // array of url to start
 $nameStartDirectory = "start"; //name of the first directory
 
-
-if(isset($_SESSION['allDirectories'])) {
-  $allDirectories = $_SESSION['allDirectories'];
-} else {
-  $allDirectories = [];
-}
 
 if(isset($_SESSION['currentPath'])) {
   $pathCurrent = $_SESSION['currentPath'];
@@ -42,26 +20,14 @@ if($url == FALSE){ // if url return false
       if(!isset($_POST['directory']) && !isset($_POST['showHideFile'])){ // if no directory select
         $pathCurrent = getcwd() . DIRECTORY_SEPARATOR . $nameStartDirectory; //path of the first directory
         chdir($pathCurrent); //go the the first directory
-        $dir_iterator = new RecursiveDirectoryIterator($pathCurrent);
-        $iterator = new RecursiveIteratorIterator($dir_iterator);
-        foreach ($iterator as $file) {
-        /*  $iteratorArray = explode(DIRECTORY_SEPARATOR, $file);
-          $iterator = array_slice($iteratorArray, 3);
-          print_r($iterator);*/
-          //  echo $file;
-        }
       } elseif(isset($_POST['showHideFile'])) {
         chdir($pathCurrent);
       }
       else {
         $directory = $_POST["directory"];
-        if(!in_array($directory, $allDirectories)){
-          array_push($allDirectories, $directory);
-        }
 
         //go to back
         $pathArray = explode(DIRECTORY_SEPARATOR, $pathCurrent);
-        print_r($pathArray);
         if(in_array($directory, $pathArray)){
           $positionDirectory = array_search($directory,$pathArray);
           $arrayPathToDirectory = array_slice($pathArray, 0, $positionDirectory + 1);
@@ -89,7 +55,6 @@ if($url == FALSE){ // if url return false
     // Without  et ..
     $arrayUrlWithoutParent = array_slice($arrayUrl, 2);
     $_SESSION['currentPath'] = $pathCurrent;
-    $_SESSION['allDirectories'] = $allDirectories;
 
 
 }
@@ -147,6 +112,39 @@ if($url == FALSE){ // if url return false
           <ul>
             <?php
 
+            if(!isset($_POST['directory']) && !isset($_POST['showHideFile'])){
+                $point = '..' . DIRECTORY_SEPARATOR;
+                mkmap($point . $nameStartDirectory);
+            } else if(isset($_POST['directory'])) {
+              if(in_array($directory, $pathArray)){
+                if(isset($_SESSION['point'])){
+                  $point = $_SESSION['point'];
+                } else {
+                  $point = '..' . DIRECTORY_SEPARATOR;
+                }
+                for($i = 0; $i < $positionDirectory; $i++){
+                  $point = substr($point,0,-2).  DIRECTORY_SEPARATOR;
+                  echo $point;
+                }
+                $_SESSION['point'] = $point;
+                mkmap($point . $nameStartDirectory);
+              } else {
+                if(isset($_SESSION['point'])){
+                  $point = $_SESSION['point'];
+                } else {
+                  $point = '..' . DIRECTORY_SEPARATOR;
+                }
+                for($i = 0; $i < 1; $i++){
+                  $point = $point . '..' . DIRECTORY_SEPARATOR;
+                }
+                mkmap($point . $nameStartDirectory);
+              }
+            }
+            $_SESSION['point'] = $point;
+
+
+
+/*
             if(!empty($allDirectories)){
               foreach ($allDirectories as $value) {
                 if(isset($_POST['showHideFile'])){
@@ -159,7 +157,7 @@ if($url == FALSE){ // if url return false
                   }
                 }
             }
-          }
+          }*/
             ?>
           </ul>
         </div>
