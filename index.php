@@ -1,4 +1,23 @@
 <?php include 'header.php';
+function mkmap($dir){
+    $folder = opendir ($dir);
+
+    while ($file = readdir ($folder)) {
+        if ($file != "." && $file != "..") {
+            $pathfile = $dir.DIRECTORY_SEPARATOR.$file;
+            echo "<li><a href=$pathfile>$file</a></li>";
+            if(filetype($pathfile) == 'dir'){
+                mkmap($pathfile);
+            }
+        }
+    }
+    closedir ($folder);
+}
+
+//mkmap('start');
+
+
+
 $url = getcwd(); //string of url to start
 $arrayUrlBase = scandir($url); // array of url to start
 $nameStartDirectory = "start"; //name of the first directory
@@ -23,6 +42,14 @@ if($url == FALSE){ // if url return false
       if(!isset($_POST['directory']) && !isset($_POST['showHideFile'])){ // if no directory select
         $pathCurrent = getcwd() . DIRECTORY_SEPARATOR . $nameStartDirectory; //path of the first directory
         chdir($pathCurrent); //go the the first directory
+        $dir_iterator = new RecursiveDirectoryIterator($pathCurrent);
+        $iterator = new RecursiveIteratorIterator($dir_iterator);
+        foreach ($iterator as $file) {
+        /*  $iteratorArray = explode(DIRECTORY_SEPARATOR, $file);
+          $iterator = array_slice($iteratorArray, 3);
+          print_r($iterator);*/
+          //  echo $file;
+        }
       } elseif(isset($_POST['showHideFile'])) {
         chdir($pathCurrent);
       }
@@ -31,7 +58,17 @@ if($url == FALSE){ // if url return false
         if(!in_array($directory, $allDirectories)){
           array_push($allDirectories, $directory);
         }
-        $pathCurrent = $pathCurrent . DIRECTORY_SEPARATOR . $directory;
+
+        //go to back
+        $pathArray = explode(DIRECTORY_SEPARATOR, $pathCurrent);
+        print_r($pathArray);
+        if(in_array($directory, $pathArray)){
+          $positionDirectory = array_search($directory,$pathArray);
+          $arrayPathToDirectory = array_slice($pathArray, 0, $positionDirectory + 1);
+          $pathCurrent = implode(DIRECTORY_SEPARATOR, $arrayPathToDirectory);
+        } else {
+          $pathCurrent = $pathCurrent . DIRECTORY_SEPARATOR . $directory;
+        }
         chdir($pathCurrent);
       }
     } else { // if first directory doesn't exists in projet architect
@@ -51,7 +88,6 @@ if($url == FALSE){ // if url return false
 
     // Without  et ..
     $arrayUrlWithoutParent = array_slice($arrayUrl, 2);
-
     $_SESSION['currentPath'] = $pathCurrent;
     $_SESSION['allDirectories'] = $allDirectories;
 
@@ -95,8 +131,12 @@ if($url == FALSE){ // if url return false
             <img src="assets/images/directory_mini.png" class="img_directoryMini">
 
               <?php
-              foreach ($BreadCrumbsFromStart as $value) {
-                echo "<li>$value</li>";
+              if(empty($BreadCrumbsFromStart)){
+                echo "<li></li>";
+              } else {
+                foreach ($BreadCrumbsFromStart as $value) {
+                  echo "<li><button type='submit' name='directory' value='$value'>$value</button></li>";
+                }
               }
               ?>
 
@@ -106,10 +146,11 @@ if($url == FALSE){ // if url return false
         <div class="nav-aside">
           <ul>
             <?php
+
             if(!empty($allDirectories)){
               foreach ($allDirectories as $value) {
                 if(isset($_POST['showHideFile'])){
-                  echo "<li><img src='assets/images/directory_mini.png' class='img_directoryMini'>$value</li>";
+                  echo "<li><button type='submit' name='directory' value='$value'><img src='assets/images/directory_mini.png' class='img_directoryMini'>$value</button></li>";
                 } else {
                   if ($value == strstr($value, '.')) {
                     echo "";
@@ -127,7 +168,7 @@ if($url == FALSE){ // if url return false
       <div class="container-dir">
 
         <div class="row">
-          <?php if($arrayUrlWithoutParent[0] != ''){
+          <?php if(isset($arrayUrlWithoutParent)){
             foreach ($arrayUrlWithoutParent as $value) {
               if(isset($_POST['showHideFile'])){
                 echo "<div class='logo-dir2'>
