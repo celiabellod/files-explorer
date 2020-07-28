@@ -6,7 +6,7 @@ function mkmap($dir){
     while ($file = readdir ($folder)) {
         if ($file != "." && $file != "..") {
             $pathfile = $dir.DIRECTORY_SEPARATOR.$file;
-            return "<li><button type='submit' name='directory' value='$file'><img src='assets/images/directory_mini.png' class='img_directoryMini'>$file</button></li>";
+            echo "<li><button type='submit' name='directory' value='$file'><img src='assets/images/directory_mini.png' class='img_directoryMini'>$file</button></li>";
             if(filetype($pathfile) == 'dir'){
                 mkmap($pathfile);
             }

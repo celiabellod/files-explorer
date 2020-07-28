@@ -1,7 +1,6 @@
 <?php include 'header.php';
 require('functions.php');
 
-
 $url = getcwd(); //string of url to start
 $arrayUrlBase = scandir($url); // array of url to start
 $nameStartDirectory = "start"; //name of the first directory
@@ -17,15 +16,9 @@ if($url == FALSE){ // if url return false
 } else { // if url return true
 
     if(in_array($nameStartDirectory, $arrayUrlBase)){ // if first directory exists in projet architect
-      if(!isset($_POST['directory']) && !isset($_POST['showHideFile'])){ // if no directory select
-        $pathCurrent = getcwd() . DIRECTORY_SEPARATOR . $nameStartDirectory; //path of the first directory
-        chdir($pathCurrent); //go the the first directory
-      } elseif(isset($_POST['showHideFile'])) {
-        chdir($pathCurrent);
-      }
-      else {
-        $directory = $_POST["directory"];
 
+      if(isset($_POST['directory'])){ // if no directory select
+        $directory = $_POST["directory"];
         //go to back
         $pathArray = explode(DIRECTORY_SEPARATOR, $pathCurrent);
         if(in_array($directory, $pathArray)){
@@ -36,6 +29,12 @@ if($url == FALSE){ // if url return false
           $pathCurrent = $pathCurrent . DIRECTORY_SEPARATOR . $directory;
         }
         chdir($pathCurrent);
+      } elseif(isset($_POST['showHideFile'])) {
+          chdir($pathCurrent);
+      }
+      else {
+        $pathCurrent = getcwd() . DIRECTORY_SEPARATOR . $nameStartDirectory; //path of the first directory
+        chdir($pathCurrent); //go the the first directory
       }
     } else { // if first directory doesn't exists in projet architect
       $pathCurrent = getcwd() . DIRECTORY_SEPARATOR . $nameStartDirectory; //path of the first directory
@@ -78,8 +77,33 @@ if($url == FALSE){ // if url return false
       <div class="">
         <div class="toggle toggle--daynight">
             <p>Elements masqués</p>
-            <input type="checkbox" id="toggle--daynight" class="toggle--checkbox" name="showHideFile" value="showHideFile" <?php if(isset($_POST['showHideFile'])){?> checked <?php }?>>
+
+            <input type="hidden" id="toggle--daynight2" class="toggle--checkbox" name="showHideFile[]" value="hideFile">
+
+            <input type="checkbox" id="toggle--daynight" class="toggle--checkbox" name="showHideFile[]" value="showFile"
+                  <?php
+
+                  if (isset($_POST['showHideFile'])) {
+                    if(isset($_POST['showHideFile'][1])){
+                      if($_POST['showHideFile'][1] == "showFile"){
+                          $_SESSION['checked'] = $_POST['showHideFile'];
+                          ?> checked <?php
+                      }
+                    }
+                  } else {
+                      if(isset($_SESSION['checked'])){
+                        $_POST['showHideFile'] = $_SESSION['checked'];
+                          if($_POST['showHideFile'][1] == "showFile"){
+                              $_SESSION['checked'] = $_POST['showHideFile'];
+                              ?> checked <?php
+                        }
+                      }
+                    }
+                ?>
+
+            >
             <label class="toggle--btn" for="toggle--daynight"><span class="toggle--feature"></span></label>
+
         </div>
         <input class="function-applicate" type="submit" value="appliquer">
       </div>
@@ -110,13 +134,9 @@ if($url == FALSE){ // if url return false
 
         <div class="nav-aside">
           <ul>
-            <?php/*
-            $point = '..' . DIRECTORY_SEPARATOR;
-            $_SESSION['point'] = mkmap($point . $nameStartDirectory);
-            if(isset($_SESSION['point'])){
-              echo $_SESSION['point'];
-            }*/
-            /*if(!isset($_POST['directory']) && !isset($_POST['showHideFile'])){
+            <?php
+
+            if(!isset($_POST['directory']) && !isset($_POST['showHideFile'])){
                 $point = '..' . DIRECTORY_SEPARATOR;
                 mkmap($point . $nameStartDirectory);
             } else if(isset($_POST['directory'])) {
@@ -126,9 +146,12 @@ if($url == FALSE){ // if url return false
                 } else {
                   $point = '..' . DIRECTORY_SEPARATOR;
                 }
-                for($i = 0; $i < $positionDirectory; $i++){
-                  $point = substr($point,0,-2).  DIRECTORY_SEPARATOR;
-                  echo $point;
+
+                $arrayBeforeReturn = count($pathArray);
+                $arrayAfterReturn = count($arrayPathToDirectory);
+                $newPosition  = $arrayBeforeReturn - $arrayAfterReturn;
+                for($i = 0; $i < $newPosition; $i++){
+                  $point = substr($point,0,-3);
                 }
                 $_SESSION['point'] = $point;
                 mkmap($point . $nameStartDirectory);
@@ -143,25 +166,12 @@ if($url == FALSE){ // if url return false
                 }
                 mkmap($point . $nameStartDirectory);
               }
+            } else {
+              $point = $_SESSION['point'];
+              mkmap($point .  $nameStartDirectory);
             }
-            $_SESSION['point'] = $point;*/
+            $_SESSION['point'] = $point;
 
-
-
-/*
-            if(!empty($allDirectories)){
-              foreach ($allDirectories as $value) {
-                if(isset($_POST['showHideFile'])){
-                  echo "<li><button type='submit' name='directory' value='$value'><img src='assets/images/directory_mini.png' class='img_directoryMini'>$value</button></li>";
-                } else {
-                  if ($value == strstr($value, '.')) {
-                    echo "";
-                  } else {
-                    echo "<li><button type='submit' name='directory' value='$value'><img src='assets/images/directory_mini.png' class='img_directoryMini'>$value</button></li>";
-                  }
-                }
-            }
-          }*/
             ?>
           </ul>
         </div>
@@ -171,25 +181,25 @@ if($url == FALSE){ // if url return false
 
         <div class="row">
           <?php if(isset($arrayUrlWithoutParent)){
-            foreach ($arrayUrlWithoutParent as $value) {
-              if(isset($_POST['showHideFile'])){
-                echo "<div class='logo-dir2'>
-                        <button type='submit' name='directory' value='$value'><img src='assets/images/directory.png' alt=''></button>
-                        <p>$value</p>
-                      </div>";
-              } else {
-                  if ($value == strstr($value, '.')) {
-                    echo "";
-                  } else {
-                    echo "<div class='logo-dir2'>
-                            <button type='submit' name='directory' value='$value'><img src='assets/images/directory.png' alt=''></button>
-                            <p>$value</p>
-                          </div>";
-                  }
+                  foreach ($arrayUrlWithoutParent as $value) {
+                    if(isset($_POST['showHideFile'])){
+                      echo "<div class='logo-dir2'>
+                              <button type='submit' name='directory' value='$value'><img src='assets/images/directory.png' alt=''></button>
+                              <p>$value</p>
+                            </div>";
+                    } else {
+                        if ($value == strstr($value, '.')) {
+                          echo "";
+                        } else {
+                          echo "<div class='logo-dir2'>
+                                  <button type='submit' name='directory' value='$value'><img src='assets/images/directory.png' alt=''></button>
+                                  <p>$value</p>
+                                </div>";
+                        }
 
-              }
-            }
-          } ?>
+                      }
+                    }
+                  } ?>
 
         </div>
       </div>
