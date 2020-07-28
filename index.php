@@ -1,14 +1,11 @@
 <?php include 'header.php';
+require('functions.php');
+
+
 $url = getcwd(); //string of url to start
 $arrayUrlBase = scandir($url); // array of url to start
 $nameStartDirectory = "start"; //name of the first directory
 
-
-if(isset($_SESSION['allDirectories'])) {
-  $allDirectories = $_SESSION['allDirectories'];
-} else {
-  $allDirectories = [];
-}
 
 if(isset($_SESSION['currentPath'])) {
   $pathCurrent = $_SESSION['currentPath'];
@@ -28,10 +25,16 @@ if($url == FALSE){ // if url return false
       }
       else {
         $directory = $_POST["directory"];
-        if(!in_array($directory, $allDirectories)){
-          array_push($allDirectories, $directory);
+
+        //go to back
+        $pathArray = explode(DIRECTORY_SEPARATOR, $pathCurrent);
+        if(in_array($directory, $pathArray)){
+          $positionDirectory = array_search($directory,$pathArray);
+          $arrayPathToDirectory = array_slice($pathArray, 0, $positionDirectory + 1);
+          $pathCurrent = implode(DIRECTORY_SEPARATOR, $arrayPathToDirectory);
+        } else {
+          $pathCurrent = $pathCurrent . DIRECTORY_SEPARATOR . $directory;
         }
-        $pathCurrent = $pathCurrent . DIRECTORY_SEPARATOR . $directory;
         chdir($pathCurrent);
       }
     } else { // if first directory doesn't exists in projet architect
@@ -51,9 +54,7 @@ if($url == FALSE){ // if url return false
 
     // Without  et ..
     $arrayUrlWithoutParent = array_slice($arrayUrl, 2);
-
     $_SESSION['currentPath'] = $pathCurrent;
-    $_SESSION['allDirectories'] = $allDirectories;
 
 
 }
@@ -95,8 +96,12 @@ if($url == FALSE){ // if url return false
             <img src="assets/images/directory_mini.png" class="img_directoryMini">
 
               <?php
-              foreach ($BreadCrumbsFromStart as $value) {
-                echo "<li>$value</li>";
+              if(empty($BreadCrumbsFromStart)){
+                echo "<li></li>";
+              } else {
+                foreach ($BreadCrumbsFromStart as $value) {
+                  echo "<li><button type='submit' name='directory' value='$value'>$value</button></li>";
+                }
               }
               ?>
 
@@ -105,11 +110,49 @@ if($url == FALSE){ // if url return false
 
         <div class="nav-aside">
           <ul>
-            <?php
+            <?php/*
+            $point = '..' . DIRECTORY_SEPARATOR;
+            $_SESSION['point'] = mkmap($point . $nameStartDirectory);
+            if(isset($_SESSION['point'])){
+              echo $_SESSION['point'];
+            }*/
+            /*if(!isset($_POST['directory']) && !isset($_POST['showHideFile'])){
+                $point = '..' . DIRECTORY_SEPARATOR;
+                mkmap($point . $nameStartDirectory);
+            } else if(isset($_POST['directory'])) {
+              if(in_array($directory, $pathArray)){
+                if(isset($_SESSION['point'])){
+                  $point = $_SESSION['point'];
+                } else {
+                  $point = '..' . DIRECTORY_SEPARATOR;
+                }
+                for($i = 0; $i < $positionDirectory; $i++){
+                  $point = substr($point,0,-2).  DIRECTORY_SEPARATOR;
+                  echo $point;
+                }
+                $_SESSION['point'] = $point;
+                mkmap($point . $nameStartDirectory);
+              } else {
+                if(isset($_SESSION['point'])){
+                  $point = $_SESSION['point'];
+                } else {
+                  $point = '..' . DIRECTORY_SEPARATOR;
+                }
+                for($i = 0; $i < 1; $i++){
+                  $point = $point . '..' . DIRECTORY_SEPARATOR;
+                }
+                mkmap($point . $nameStartDirectory);
+              }
+            }
+            $_SESSION['point'] = $point;*/
+
+
+
+/*
             if(!empty($allDirectories)){
               foreach ($allDirectories as $value) {
                 if(isset($_POST['showHideFile'])){
-                  echo "<li><img src='assets/images/directory_mini.png' class='img_directoryMini'>$value</li>";
+                  echo "<li><button type='submit' name='directory' value='$value'><img src='assets/images/directory_mini.png' class='img_directoryMini'>$value</button></li>";
                 } else {
                   if ($value == strstr($value, '.')) {
                     echo "";
@@ -118,7 +161,7 @@ if($url == FALSE){ // if url return false
                   }
                 }
             }
-          }
+          }*/
             ?>
           </ul>
         </div>
@@ -127,7 +170,7 @@ if($url == FALSE){ // if url return false
       <div class="container-dir">
 
         <div class="row">
-          <?php if($arrayUrlWithoutParent[0] != ''){
+          <?php if(isset($arrayUrlWithoutParent)){
             foreach ($arrayUrlWithoutParent as $value) {
               if(isset($_POST['showHideFile'])){
                 echo "<div class='logo-dir2'>
