@@ -100,6 +100,41 @@ body {
   animation-timing-function: ease-in-out;
 }
 
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 10vw;
+  height: 10vh;
+  overflow: auto;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+}
+
+.closet {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.closet:hover,
+.closet:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .breadCrumbs {
   font-size: 1vw;
   margin-left: 12vw;
@@ -205,6 +240,8 @@ body {
   justify-content: space-between;
   height: 17vh;
   align-items: center;
+  width: 100%;
+  margin-top: 3rem;
 }
 .function .function-applicate {
   margin-left: 3.5vw;
