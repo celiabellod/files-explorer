@@ -66,7 +66,7 @@ if($url == FALSE){ // if url return false
         <img src="assets/images/close.png">
       </div>
     </div>
-    <form class="function" method="POST" action="index.php">
+    <form class="function" method="GET" action="index.php">
 
       <div class="function_firstparts">
         <p>Couper</p>
@@ -112,7 +112,7 @@ if($url == FALSE){ // if url return false
 
     </form>
 
-    <form class="" action="index.php" method="post">
+    <form class="" action="index.php" method="GET">
       <nav>
 
         <div class="breadCrumbs">
@@ -190,11 +190,16 @@ if($url == FALSE){ // if url return false
                     } else {
                         if ($value == strstr($value, '.')) {
                           echo "";
+                        } else if(substr($value, -4) == ".txt"){
+                            echo "<div class='logo-dir2'>
+                                    <button type='submit' name='open' value='$value'><img src='assets/images/directory.png' alt=''></button>
+                                    <p>$value</p>
+                                  </div>";
                         } else {
-                          echo "<div class='logo-dir2'>
-                                  <button type='submit' name='directory' value='$value'><img src='assets/images/directory.png' alt=''></button>
-                                  <p>$value</p>
-                                </div>";
+                            echo "<div class='logo-dir2'>
+                                    <button type='submit' name='directory' value='$value'><img src='assets/images/directory.png' alt=''></button>
+                                    <p>$value</p>
+                                  </div>";
                         }
 
                       }
@@ -205,4 +210,7 @@ if($url == FALSE){ // if url return false
       </div>
     </div>
   </form>
+
+
+
 <?php include 'footer.php' ?>
