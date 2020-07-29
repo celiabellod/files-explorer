@@ -5,7 +5,7 @@
   <div class="modal-content">
     <span class="closet">&times;</span>
     <?php
-    if(isset($_GET['open'])) {
+    if(isset($_GET['open'])){
       $file = $_GET['open'];
       $ressource = fopen( $file, 'rb');
       echo fgets($ressource);
