@@ -66,7 +66,7 @@ if($url == FALSE){ // if url return false
         <img src="assets/images/close.png">
       </div>
     </div>
-    <form class="function" method="GET" action="index.php">
+    <form class="function" method="POST" action="index.php">
 
       <div class="function_firstparts">
         <p>Couper</p>
@@ -112,7 +112,7 @@ if($url == FALSE){ // if url return false
 
     </form>
 
-    <form class="" action="index.php" method="GET">
+    <form class="" action="index.php" method="POST">
       <nav>
 
         <div class="breadCrumbs">
@@ -192,7 +192,7 @@ if($url == FALSE){ // if url return false
                           echo "";
                         } else if(substr($value, -4) == ".txt"){
                             echo "<div class='logo-dir2'>
-                                    <button type='submit' name='open' value='$value'><img src='assets/images/directory.png' alt=''></button>
+                                    <a href='?open=$value'><img src='assets/images/directory.png' alt=''></a>
                                     <p>$value</p>
                                   </div>";
                         } else {
