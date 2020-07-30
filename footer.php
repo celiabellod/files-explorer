@@ -7,7 +7,7 @@
     <?php
     if(isset($_GET['open'])){
       $file = $_GET['open'];
-      $ressource = fopen( $file, 'rb');
+      $ressource = fopen($file, 'rb');
       echo fgets($ressource);
     }
      ?>

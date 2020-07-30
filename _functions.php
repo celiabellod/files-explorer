@@ -1,6 +1,5 @@
 <?php
 
-
 function navAsideGoUp($newPosition, $navAsidePoint){
   for($i = 0; $i < $newPosition; $i++){
     $navAsidePoint = substr($navAsidePoint,0,-3);
@@ -42,14 +41,7 @@ function create($pathCurrent, $fileName){
   }
 }
 
-function elementFunction($value){
-  echo "<form method='POST' action='logic.php'>
-          <input type='text' name='rename[]'>
-          <input type='hidden' name='rename[]' value='$value'>
-          <input type='submit' name='rename[]' value='Renommer'>
-        </form>
-       </div>";
-}
+
 function addScheme($entry) {
   $tab['name'] = $entry;
   return $tab;
@@ -88,6 +80,36 @@ function list_dir($base, $cur, $level=0) {
     closedir($dir);
   }
 }
+
+function rrmdir($dir) {
+  if (is_dir($dir)) {
+    $files = scandir($dir);
+    foreach ($files as $file)
+    if ($file != "." && $file != "..") rrmdir("$dir/$file");
+    rmdir($dir);
+  }
+  else if (file_exists($dir)) unlink($dir);
+}
+
+// copies files and non-empty directories
+function cut($src, $dst, $dir) {
+  if (file_exists($src)){
+    if (is_dir($src .DIRECTORY_SEPARATOR. $dir)) {
+      $files = scandir($src .DIRECTORY_SEPARATOR. $dir);
+      foreach ($files as $file){
+        if ($file != "." && $file != ".."){
+          rcopy($src, $dst, $file);
+        }
+      }
+      rrmdir($src .DIRECTORY_SEPARATOR. $dir);
+      mkdir($dst .DIRECTORY_SEPARATOR. $dir);
+    } else if (is_file($dir)){
+      rrmdir($src .DIRECTORY_SEPARATOR. $dir);
+      touch($src .DIRECTORY_SEPARATOR. $dir);
+    }
+  }
+}
+
 
 
 

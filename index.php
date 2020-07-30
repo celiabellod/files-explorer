@@ -33,25 +33,30 @@ $_SESSION['currentPath'] = $pathCurrent;
         <img src="assets/images/close.png">
       </div>
     </div>
-    <form method="POST" action="logic.php">
       <div class="function">
 
         <div class="function_firstparts">
-          <label for="createFile">Nouveau</label>
-          <input type="text" name="create" id="create">
-
+          <form method="POST" action="logic.php">
+              <label for="createFile">Nouveau</label>
+              <input type="text" name="create" id="create">
+          </form>
+          <form method="POST" action="logic.php">
+            <input type="submit" name="paste" value="coller">
+          </form>
         </div>
         <div class="">
           <div class="toggle toggle--daynight">
               <p>Elements masqués</p>
-              <input type="hidden" id="toggle--daynight2" class="toggle--checkbox" name="showHideFile[]" value="hideFile">
-              <input type="checkbox" id="toggle--daynight" class="toggle--checkbox" name="showHideFile[]" value="showFile"
-                    <?php
-                    if(isset($_SESSION['checked']) && $_SESSION['checked'] == "checked"){ ?>
-                      checked
-                    <?php } ?>>
+              <form method="POST" action="logic.php">
+                <input type="hidden" id="toggle--daynight2" class="toggle--checkbox" name="showHideFile[]" value="hideFile">
+                <input type="checkbox" id="toggle--daynight" class="toggle--checkbox" name="showHideFile[]" value="showFile"
+                      <?php
+                      if(isset($_SESSION['checked']) && $_SESSION['checked'] == "checked"){ ?>
+                        checked
+                      <?php } ?>>
 
-              <label class="toggle--btn" for="toggle--daynight"><span class="toggle--feature"></span></label>
+                <label class="toggle--btn" for="toggle--daynight"><span class="toggle--feature"></span></label>
+              </form>
           </div>
           <input class="function-applicate" type="submit" value="appliquer">
         </div>
@@ -93,19 +98,6 @@ $_SESSION['currentPath'] = $pathCurrent;
           ?>
 
 
-
-          <!--
-          <button type='submit' name='directory' value='start'><img src="assets/images/directory_mini.png" class="img_directoryMini"></button>
-            <?php/*
-              if(isset($_SESSION['navAsidePoint'])){
-                $navAsidePoint  = $_SESSION['navAsidePoint'];
-              } else{
-                $navAsidePoint  = '..' . DIRECTORY_SEPARATOR;
-                $_SESSION['navAsidePoint'] = $navAsidePoint;
-              }
-
-              architectExplorer($navAsidePoint .  $firstDirectory);*/
-            ?>-->
         </div>
       </nav>
 
