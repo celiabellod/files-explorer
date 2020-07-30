@@ -103,6 +103,7 @@ $_SESSION['currentPath'] = $pathCurrent;
                 $navAsidePoint  = '..' . DIRECTORY_SEPARATOR;
                 $_SESSION['navAsidePoint'] = $navAsidePoint;
               }
+
               architectExplorer($navAsidePoint .  $firstDirectory);*/
             ?>-->
         </div>

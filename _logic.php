@@ -28,9 +28,6 @@ if(isset($_POST['directory'])){ // if no directory select
   } else {
     $navAsidePoint = navAsideGoDown($navAsidePoint);
     $pathCurrent = $pathCurrent . DIRECTORY_SEPARATOR . $directory;
-    if($pathCurrent == null){
-
-    }
   }
 
   $_SESSION['navAsidePoint'] = $navAsidePoint;

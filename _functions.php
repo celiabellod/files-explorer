@@ -100,6 +100,7 @@ foreach ($startArray as $value) {
   $keyHideFile = array_keys($hideFile);
   $fileHideShow = show($hideFile);
 }
+
   function hide($file) {
     $fileArray = explode(" ", $file);
      foreach ($fileArray as $key => $value) {
@@ -110,6 +111,7 @@ foreach ($startArray as $value) {
         return $fileArray;
     }
   }
+
   function show($hideFile) {
     foreach ($hideFile as $value) {
       echo $value;
