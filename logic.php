@@ -55,26 +55,4 @@ if(isset($_POST['showHideFile'][1]) && $_POST['showHideFile'][1] == "showFile"){
 } else {
     $_SESSION['checked'] = "unchecked";
 }
-
-if(isset($_POST['delete'])){
-  if(substr($pathCurrent, -9) == "corbeille"){
-    rrmdir($_POST['delete']);
-  } else {
-    cut($pathCurrent, getcwd() . DIRECTORY_SEPARATOR. "start" .DIRECTORY_SEPARATOR. "corbeille" , $_POST['delete']);
-  }
-}
-
-if(isset($_POST['copy'])){
-  $_SESSION['copyDir'] = $_POST['copy'];
-  $_SESSION['copyPath'] = $pathCurrent;
-}
-
-if(isset($_POST['past'])){
-  if(isset($_POST['copyDir']) && isset($_POST['copyPath']) ){
-    copy($_POST['copyPath'].$_POST['copyDir'] , $pathCurrent . $_POST['copyDir']);
-  } else {
-    echo "erreur";
-  }
-}
-
 //header('Location: index.php');

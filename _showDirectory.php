@@ -7,16 +7,8 @@
                <button type='submit' name='directory' value='$value'><img src='assets/images/directory.png' alt=''></button>
               </form>
                <p>$value</p>
-               <form method='POST' action='logic.php'>
-                 <input type='text' name='rename[]'>
-                 <input type='hidden' name='rename[]' value='$value'>
-                 <input type='submit' name='rename[]' value='Renommer'>
-               </form>
-               <form method='POST' action='logic.php'>
-                 <button type='submit' name='delete' value='$value'>Supprimer</button>
-               </form>
              </div>";
-
+      elementFunction($value);
     } else if (isset($_SESSION['checked']) && $_SESSION['checked'] == "unchecked" || !isset($_SESSION['checked']) ){
        if ($value == strstr($value, '.')) {
          echo"";
@@ -30,21 +22,9 @@
                   <form method='POST' action='logic.php'>
                     <button type='submit' name='directory' value='$value'><img src='assets/images/directory.png' alt=''></button>
                   </form>
-                  <p>$value</p>
-                  <form method='POST' action='logic.php'>
-                    <input type='text' name='rename[]'>
-                    <input type='hidden' name='rename[]' value='$value'>
-                    <input type='submit' name='rename[]' value='Renommer'>
-                  </form>
-                  <form method='POST' action='logic.php'>
-                    <button type='submit' name='delete' value='$value'>Supprimer</button>
-                  </form>
-                  <form method='POST' action='logic.php'>
-                    <button type='submit' name='copy' value='$value'>Copier</button>
-                  </form>
-                 </div>
-                  ";
+                   <p>$value</p>";
        }
+       elementFunction($value);
      }
 
    }
