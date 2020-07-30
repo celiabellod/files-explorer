@@ -91,21 +91,6 @@ $_SESSION['currentPath'] = $pathCurrent;
           }
 
           ?>
-
-
-
-          <!--
-          <button type='submit' name='directory' value='start'><img src="assets/images/directory_mini.png" class="img_directoryMini"></button>
-            <?php/*
-              if(isset($_SESSION['navAsidePoint'])){
-                $navAsidePoint  = $_SESSION['navAsidePoint'];
-              } else{
-                $navAsidePoint  = '..' . DIRECTORY_SEPARATOR;
-                $_SESSION['navAsidePoint'] = $navAsidePoint;
-              }
-
-              architectExplorer($navAsidePoint .  $firstDirectory);*/
-            ?>-->
         </div>
       </nav>
 
