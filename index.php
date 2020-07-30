@@ -33,7 +33,7 @@ $_SESSION['currentPath'] = $pathCurrent;
         <img src="assets/images/close.png">
       </div>
     </div>
-    <form method="POST" action="_logic.php">
+    <form method="POST" action="logic.php">
       <div class="function">
 
         <div class="function_firstparts">
@@ -66,8 +66,37 @@ $_SESSION['currentPath'] = $pathCurrent;
         </div>
 
         <div class="nav-aside">
+          <?php
+
+          $dir = isset($_POST['dir']) ? $_POST['dir'] : '';
+
+          if(isset($_SESSION['navAsidePoint'])){
+            $navAsidePoint  = $_SESSION['navAsidePoint'];
+          } else {
+            $navAsidePoint  = '..' . DIRECTORY_SEPARATOR;
+            $_SESSION['navAsidePoint'] = $navAsidePoint;
+          }
+
+          $BASE = $navAsidePoint .  $firstDirectory;
+          if(!$dir) {
+            echo "<img src='assets/images/directory_mini.png' width='20px'/> / <br />";
+          } else {
+            echo "<img src='assets/images/directory_mini.png' width='20px'/> / <br/>";
+          }
+
+          list_dir($BASE, $dir, 1);
+
+          if(!$dir) {
+            $dir = $BASE;
+          }
+
+          ?>
+
+
+
+          <!--
           <button type='submit' name='directory' value='start'><img src="assets/images/directory_mini.png" class="img_directoryMini"></button>
-            <?php
+            <?php/*
               if(isset($_SESSION['navAsidePoint'])){
                 $navAsidePoint  = $_SESSION['navAsidePoint'];
               } else{
@@ -75,8 +104,8 @@ $_SESSION['currentPath'] = $pathCurrent;
                 $_SESSION['navAsidePoint'] = $navAsidePoint;
               }
 
-              architectExplorer($navAsidePoint .  $firstDirectory);
-            ?>
+              architectExplorer($navAsidePoint .  $firstDirectory);*/
+            ?>-->
         </div>
       </nav>
 

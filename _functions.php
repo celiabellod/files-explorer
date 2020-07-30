@@ -1,5 +1,6 @@
 <?php
 
+
 function navAsideGoUp($newPosition, $navAsidePoint){
   for($i = 0; $i < $newPosition; $i++){
     $navAsidePoint = substr($navAsidePoint,0,-3);
@@ -42,36 +43,52 @@ function create($pathCurrent, $fileName){
 }
 
 function elementFunction($value){
-  echo "<form method='POST' action='_logic.php'>
+  echo "<form method='POST' action='logic.php'>
           <input type='text' name='rename[]'>
           <input type='hidden' name='rename[]' value='$value'>
           <input type='submit' name='rename[]' value='Renommer'>
         </form>
        </div>";
 }
-
-function architectExplorer($dir){
-   echo "<ul>";
-    $folder = opendir ($dir);
-
-    while ($file = readdir ($folder)) {
-        if ($file != "." && $file != "..") {
-            $pathfile = $dir.DIRECTORY_SEPARATOR.$file;
-
-            if ($file == strstr($file, '.') || substr($file, -4) == ".txt") {
-              echo"";
-            } else {
-              echo "<li>> <button type='submit' name='directory' value='$file'><img src='assets/images/directory_mini.png' class='img_directoryMini'>$file</button></li></br>";
-            }
-
-            if(filetype($pathfile) == 'dir'){
-                architectExplorer($pathfile);
-            }
-        }
-    }
-    closedir ($folder);
-    echo "</ul>";
+function addScheme($entry) {
+  $tab['name'] = $entry;
+  return $tab;
 }
+
+function list_dir($base, $cur, $level=0) {
+  global $BASE;
+  if ($dir = opendir($base)) {
+    $tab = [];
+    while($entry = readdir($dir)) {
+      if(is_dir($base.DIRECTORY_SEPARATOR.$entry) && !in_array($entry, array('.','..'))) {
+        $tab[] = $entry;
+      }
+    }
+
+    foreach($tab as $elem) {
+      $entry = $elem;
+      $file = $base.DIRECTORY_SEPARATOR.$entry;
+      for($i=1; $i<=(4*$level); $i++) {
+        echo ' ';
+      }
+
+      if($file == $cur) {
+        echo "<img src='assets/images/directory_mini.png' width='20px'/> $entry<br/>";
+      } else {
+        echo"<form method='POST' action='index.php'>
+              <li><img src='assets/images/directory_mini.png' width='20px'/>
+              <button type='submit' name='dir' value='$file'>$entry</button></li>
+            </form>";
+      }
+
+      if(preg_match("#".$file.'/#',$cur.DIRECTORY_SEPARATOR)) {
+        list_dir($file, $cur, $level+1);
+      }
+    }
+    closedir($dir);
+  }
+}
+
 
 
 

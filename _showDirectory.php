@@ -3,7 +3,9 @@
   foreach ($arrayUrl as $value) {
     if(isset($_SESSION['checked']) && $_SESSION['checked'] == "checked"){
       echo "<div class='logo-dir2'>
+              <form method='POST' action='logic.php'>
                <button type='submit' name='directory' value='$value'><img src='assets/images/directory.png' alt=''></button>
+              </form>
                <p>$value</p>
              </div>";
       elementFunction($value);
@@ -17,7 +19,9 @@
                      <p>$value</p>";
           } else {
            echo "<div class='logo-dir2'>
-                   <button type='submit' name='directory' value='$value'><img src='assets/images/directory.png' alt=''></button>
+                  <form method='POST' action='logic.php'>
+                    <button type='submit' name='directory' value='$value'><img src='assets/images/directory.png' alt=''></button>
+                  </form>
                    <p>$value</p>";
        }
        elementFunction($value);
