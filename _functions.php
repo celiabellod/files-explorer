@@ -90,6 +90,29 @@ function list_dir($base, $cur, $level=0) {
 }
 
 
+function rrmdir($dir) {
+  if (is_dir($dir)) {
+    $files = scandir($dir);
+    foreach ($files as $file)
+    if ($file != "." && $file != "..") rrmdir("$dir/$file");
+    rmdir($dir);
+  }
+  else if (file_exists($dir)) unlink($dir);
+}
+
+// copies files and non-empty directories
+function rcopy($src, $dst, $directory) {
+  if (file_exists($dst)) rrmdir($dst);
+  if (is_dir($src)) {
+    mkdir($dst);
+    $files = scandir($src);
+    foreach ($files as $file)
+    if ($file != "." && $file != "..") rcopy("$src/$file", "$dst/$file");
+  }
+  else if (file_exists($src)) copy($src, $dst);
+}
+
+
 
 
 
@@ -100,7 +123,6 @@ foreach ($startArray as $value) {
   $keyHideFile = array_keys($hideFile);
   $fileHideShow = show($hideFile);
 }
-
   function hide($file) {
     $fileArray = explode(" ", $file);
      foreach ($fileArray as $key => $value) {
@@ -111,11 +133,11 @@ foreach ($startArray as $value) {
         return $fileArray;
     }
   }
-
   function show($hideFile) {
     foreach ($hideFile as $value) {
       echo $value;
     }
   }
 */
+?>
 ?>
