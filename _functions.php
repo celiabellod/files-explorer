@@ -42,14 +42,6 @@ function create($pathCurrent, $fileName){
   }
 }
 
-function elementFunction($value){
-  echo "<form method='POST' action='logic.php'>
-          <input type='text' name='rename[]'>
-          <input type='hidden' name='rename[]' value='$value'>
-          <input type='submit' name='rename[]' value='Renommer'>
-        </form>
-       </div>";
-}
 function addScheme($entry) {
   $tab['name'] = $entry;
   return $tab;
@@ -90,26 +82,31 @@ function list_dir($base, $cur, $level=0) {
 }
 
 
-function rrmdir($dir) {
-  if (is_dir($dir)) {
-    $files = scandir($dir);
+function rmElement($element) {
+  if (is_dir($element)) {
+    $files = scandir($element);
     foreach ($files as $file)
-    if ($file != "." && $file != "..") rrmdir("$dir/$file");
-    rmdir($dir);
+    if ($file != "." && $file != "..") rmElement("$dir/$file");
+    rmdir($element);
+  } elseif (is_file($element)) {
+    rmdir($element);
   }
   else if (file_exists($dir)) unlink($dir);
 }
 
 // copies files and non-empty directories
-function rcopy($src, $dst, $directory) {
-  if (file_exists($dst)) rrmdir($dst);
-  if (is_dir($src)) {
+function cutAndPast($src, $dst) {
+  if (file_exists($dst) && is_dir($src)) {
     mkdir($dst);
     $files = scandir($src);
-    foreach ($files as $file)
-    if ($file != "." && $file != "..") rcopy("$src/$file", "$dst/$file");
+    foreach ($files as $file){
+      if ($file != "." && $file != "..") rcopy("$src/$file", "$dst/$file");
+    }
+    rmElement($src);
+  }elseif (is_file($dst)) {
+    touch($dst);
+    rmElement($src);
   }
-  else if (file_exists($src)) copy($src, $dst);
 }
 
 
@@ -139,5 +136,5 @@ foreach ($startArray as $value) {
     }
   }
 */
-?>
+
 ?>

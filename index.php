@@ -4,6 +4,7 @@
 $url = getcwd();
 $arrayUrl = scandir($url);
 $firstDirectory = "start";
+$deleteDirectory = "corbeille";
 
 if(!isset($_SESSION['currentPath'])) {
   if($url == FALSE){
@@ -14,16 +15,18 @@ if(!isset($_SESSION['currentPath'])) {
       } else {
         $pathCurrent = getcwd() . DIRECTORY_SEPARATOR . $firstDirectory;
         mkdir($pathCurrent);
+        mkdir($pathCurrent .DIRECTORY_SEPARATOR. "corbeille");
       }
   }
-}else{
+}else if(isset($_SESSION['redirection'])){
   $pathCurrent = $_SESSION['currentPath'];
+} else {
+  $pathCurrent = getcwd() . DIRECTORY_SEPARATOR . $firstDirectory;
 }
 
 chdir($pathCurrent);
 $arrayUrl= scandir($pathCurrent);
 $arrayUrl= array_slice($arrayUrl, 2); // Without  et ..
-
 $_SESSION['currentPath'] = $pathCurrent;
 ?>
 
@@ -37,12 +40,19 @@ $_SESSION['currentPath'] = $pathCurrent;
       <div class="function">
 
         <div class="function_firstparts">
-          <label for="createFile">Nouveau</label>
-          <input type="text" name="create" id="create">
+
+            <label for="createFile">Nouveau</label>
+            <input type="text" name="create" id="create">
+
+          <form action="logic.php" method="post">
+            <input type="submit" name="paste" value="coller">
+          </form>
+
 
         </div>
         <div class="">
           <div class="toggle toggle--daynight">
+
               <p>Elements masqués</p>
               <input type="hidden" id="toggle--daynight2" class="toggle--checkbox" name="showHideFile[]" value="hideFile">
               <input type="checkbox" id="toggle--daynight" class="toggle--checkbox" name="showHideFile[]" value="showFile"
@@ -64,9 +74,9 @@ $_SESSION['currentPath'] = $pathCurrent;
               <?php breadCrumbs($pathCurrent, $firstDirectory) ?>
           </ul>
         </div>
-
+<!--
         <div class="nav-aside">
-          <?php
+          <?php/*
 
           $dir = isset($_POST['dir']) ? $_POST['dir'] : '';
 
@@ -90,10 +100,10 @@ $_SESSION['currentPath'] = $pathCurrent;
             $dir = $BASE;
           }
 
-          ?>
+          */?>
         </div>
       </nav>
-
+-->
       <div class="container-dir">
         <div class="row">
           <?php include '_showDirectory.php';?>

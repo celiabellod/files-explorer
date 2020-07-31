@@ -58,9 +58,9 @@ if(isset($_POST['showHideFile'][1]) && $_POST['showHideFile'][1] == "showFile"){
 
 if(isset($_POST['delete'])){
   if(substr($pathCurrent, -9) == "corbeille"){
-    rrmdir($_POST['delete']);
+    rmElement($_POST['delete']);
   } else {
-    rcopy($src, $dst, $_POST['delete'])
+    cutAndPast($pathCurrent . $_POST['delete'] , $pathCurrent . DIRECTORY_SEPARATOR . "corbeille" . $_POST['delete']);
   }
 }
 
@@ -70,15 +70,12 @@ if(isset($_POST['copy'])){
 }
 
 if(isset($_POST['past'])){
-  if(isset($_SESSION['copyDir']) || isset($_SESSION['copyPath'])){
+  if(isset($_SESSION['copyDir']) && isset($_SESSION['copyPath'])){
     if(copy($_SESSION['copyDir'] .DIRECTORY_SEPARATOR. $_SESSION['copyPath'], $_SESSION['copyDir'] .DIRECTORY_SEPARATOR. $pathCurrent) == false){
       echo "Le fichier ne peut être copier";
     }
   }
-
 }
 
-
-
-
-//header('Location: index.php');
+$_SESSION['redirection'] = true;
+header('Location: index.php');

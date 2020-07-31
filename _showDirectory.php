@@ -1,14 +1,24 @@
 <?php
 
   foreach ($arrayUrl as $value) {
-    if(isset($_SESSION['checked']) && $_SESSION['checked'] == "checked"){
+    if($value == "corbeille"){
+      echo"<div class='logo-dir2'>
+             <form method='POST' action='logic.php'>
+               <button type='submit' name='directory' value='$value'><img src='assets/images/directory.png' alt=''></button>
+             </form>
+             <p>$value</p>";
+    }else if(isset($_SESSION['checked']) && $_SESSION['checked'] == "checked"){
       echo "<div class='logo-dir2'>
               <form method='POST' action='logic.php'>
                <button type='submit' name='directory' value='$value'><img src='assets/images/directory.png' alt=''></button>
               </form>
                <p>$value</p>
-             </div>";
-      elementFunction($value);
+               <form method='POST' action='logic.php'>
+                 <input type='text' name='rename[]'>
+                 <input type='hidden' name='rename[]' value='$value'>
+                 <input type='submit' name='rename[]' value='Renommer'>
+               </form>
+            </div>";
     } else if (isset($_SESSION['checked']) && $_SESSION['checked'] == "unchecked" || !isset($_SESSION['checked']) ){
        if ($value == strstr($value, '.')) {
          echo"";
@@ -22,9 +32,20 @@
                   <form method='POST' action='logic.php'>
                     <button type='submit' name='directory' value='$value'><img src='assets/images/directory.png' alt=''></button>
                   </form>
-                   <p>$value</p>";
+                  <p>$value</p>";
        }
-       elementFunction($value);
+       echo "<form method='POST' action='logic.php'>
+               <input type='text' name='rename[]'>
+               <input type='hidden' name='rename[]' value='$value'>
+               <input type='submit' name='rename[]' value='Renommer'>
+             </form>
+             <form method='POST' action='logic.php'>
+               <input type='submit' name='copy' value='Copier'>
+             </form>
+             <form method='POST' action='logic.php'>
+               <input type='submit' name='delete' value='Supprimer'>
+             </form>
+            </div>";
      }
 
    }
