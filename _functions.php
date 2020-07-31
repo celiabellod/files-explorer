@@ -87,7 +87,7 @@ function rmElement($element) {
     $files = scandir($element);
     foreach ($files as $file){
       if ($file != "." && $file != ".."){
-        rmElement("$dir/$file");
+        rmElement("$element/$file");
       }
     }
     rmdir($element);
@@ -102,7 +102,7 @@ function cutAndPast($src, $dst) {
     mkdir($dst);
     $files = scandir($src);
     foreach ($files as $file){
-      if ($file != "." && $file != "..") rcopy("$src/$file", "$dst/$file");
+      if ($file != "." && $file != "..") cutAndPast("$src/$file", "$dst/$file");
     }
     rmElement($src);
   }elseif (is_file($dst)) {
@@ -124,7 +124,7 @@ function copyDir($dirSrc,$dirDest){
           copyDir ($dirSrc .DIRECTORY_SEPARATOR. $file , $dirDest .DIRECTORY_SEPARATOR. $file );
 
         } elseif($file != '..' && $file != '.') {
-             copy( $dir2copy .DIRECTORY_SEPARATOR. $file , $dir_paste .DIRECTORY_SEPARATOR. $file );
+             copy($dirSrc .DIRECTORY_SEPARATOR. $file , $dirDest .DIRECTORY_SEPARATOR. $file );
           }
         }
 

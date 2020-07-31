@@ -1,5 +1,37 @@
 <?php
+if(substr($pathCurrent, -9) == "corbeille"){
+  foreach ($arrayUrl as $value) {
+    if(isset($_SESSION['checked']) && $_SESSION['checked'] == "checked"){
+      echo "<div class='logo-dir2'>
+              <img src='assets/images/directory.png' alt=''></button>
+              <p>$value</p>
+            </div>";
+    } else if (isset($_SESSION['checked']) && $_SESSION['checked'] == "unchecked" || !isset($_SESSION['checked']) ){
+       if ($value == strstr($value, '.')) {
+         echo"";
+       } else {
+         if(substr($value, -4) == ".txt"){
+             echo "<div class='logo-dir2'>
+                    <img src='assets/images/directory.png' alt=''>
+                     <p>$value</p>";
+          } else {
+           echo "<div class='logo-dir2'>
+                  <img src='assets/images/directory.png' alt=''>
+                  <p>$value</p>";
+       }
+       echo "
+             <form method='POST' action='logic.php'>
+                <button type='submit' name='restaure' value='$value'>Restaurer</button>
+             </form>
+             <form method='POST' action='logic.php'>
+               <button type='submit' name='delete' value='$value'>Supprimer</button>
+             </form>
+            </div>";
+     }
 
+   }
+ }
+} else {
   foreach ($arrayUrl as $value) {
     if($value == "corbeille"){
       echo"<div class='logo-dir2'>
@@ -49,4 +81,5 @@
      }
 
    }
+ }
 }

@@ -57,6 +57,8 @@ if(isset($_POST['delete'])){
   if(substr($pathCurrent, -9) == "corbeille"){
     rmElement($pathCurrent .DIRECTORY_SEPARATOR. $_POST['delete']);
   } else {
+    $_SESSION['deletePath'] = $pathCurrent;
+    $_SESSION['deleteDir'] = $_POST['delete'];
     cutAndPast($pathCurrent .DIRECTORY_SEPARATOR. $_POST['delete'] , $pathCurrent . DIRECTORY_SEPARATOR . "corbeille" .DIRECTORY_SEPARATOR. $_POST['delete']);
   }
 }
@@ -78,5 +80,16 @@ if(isset($_POST['past'])){
     }
   }
 }
+
+if(isset($_POST['restaure'])){
+  if(isset($_SESSION['deletePath']) && isset($_SESSION['deleteDir'])){
+    $dest = $_SESSION['deletePath'] .DIRECTORY_SEPARATOR.  $_SESSION['deleteDir'];
+    $src = $pathCurrent.DIRECTORY_SEPARATOR. $_SESSION['deleteDir'];
+    cutAndPast($src , $dest);
+    echo $src;
+    echo $dest;
+  }
+}
+
 $_SESSION['redirection'] = true;
 //header('Location: index.php');

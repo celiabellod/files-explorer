@@ -28,6 +28,7 @@ chdir($pathCurrent);
 $arrayUrl= scandir($pathCurrent);
 $arrayUrl= array_slice($arrayUrl, 2); // Without  et ..
 $_SESSION['currentPath'] = $pathCurrent;
+
 ?>
 
   <div class="container-explorer">
