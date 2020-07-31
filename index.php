@@ -36,7 +36,7 @@ $_SESSION['currentPath'] = $pathCurrent;
         <img src="assets/images/close.png">
       </div>
     </div>
-    <form method="POST" action="logic.php">
+    <form method="POST" id="navigation" action="logic.php">
       <div class="function">
 
         <div class="function_firstparts">
@@ -45,7 +45,7 @@ $_SESSION['currentPath'] = $pathCurrent;
             <input type="text" name="create" id="create">
 
           <form action="logic.php" method="post">
-            <input type="submit" name="paste" value="coller">
+            <button type="submit" name="past">Coller</button>
           </form>
 
 
@@ -70,7 +70,7 @@ $_SESSION['currentPath'] = $pathCurrent;
       <nav>
         <div class="breadCrumbs">
           <ul>
-            <button type='submit' name='directory' value='start'><img src="assets/images/directory_mini.png" class="img_directoryMini"></button>
+            <button type='submit' name='directory' value='start' form="navigation" ><img src="assets/images/directory_mini.png" class="img_directoryMini"></button>
               <?php breadCrumbs($pathCurrent, $firstDirectory) ?>
           </ul>
         </div>

@@ -4,13 +4,13 @@
     if($value == "corbeille"){
       echo"<div class='logo-dir2'>
              <form method='POST' action='logic.php'>
-               <button type='submit' name='directory' value='$value'><img src='assets/images/directory.png' alt=''></button>
+               <button type='submit' name='directory' value='$value' form='navigation'><img src='assets/images/directory.png' alt=''></button>
              </form>
              <p>$value</p>";
     }else if(isset($_SESSION['checked']) && $_SESSION['checked'] == "checked"){
       echo "<div class='logo-dir2'>
               <form method='POST' action='logic.php'>
-               <button type='submit' name='directory' value='$value'><img src='assets/images/directory.png' alt=''></button>
+               <button type='submit' name='directory' value='$value' form='navigation'><img src='assets/images/directory.png' alt=''></button>
               </form>
                <p>$value</p>
                <form method='POST' action='logic.php'>
@@ -30,7 +30,7 @@
           } else {
            echo "<div class='logo-dir2'>
                   <form method='POST' action='logic.php'>
-                    <button type='submit' name='directory' value='$value'><img src='assets/images/directory.png' alt=''></button>
+                    <button type='submit' name='directory' value='$value' form='navigation'><img src='assets/images/directory.png' alt=''></button>
                   </form>
                   <p>$value</p>";
        }
@@ -40,10 +40,10 @@
                <input type='submit' name='rename[]' value='Renommer'>
              </form>
              <form method='POST' action='logic.php'>
-               <input type='submit' name='copy' value='Copier'>
+                <button type='submit' name='copy' value='$value'>Copier</button>
              </form>
              <form method='POST' action='logic.php'>
-               <input type='submit' name='delete' value='Supprimer'>
+               <button type='submit' name='delete' value='$value'>Supprimer</button>
              </form>
             </div>";
      }

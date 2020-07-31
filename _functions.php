@@ -23,7 +23,7 @@ function breadCrumbs($pathCurrent,$firstDirectory) {
     echo "<li></li>";
   } else {
     foreach ($breadCrumbs as $value) {
-      echo "<li><button type='submit' name='directory' value='$value'>$value</button></li>";
+      echo "<li><button type='submit' name='directory' value='$value' form='navigation'>$value</button></li>";
     }
   }
 }
@@ -85,18 +85,20 @@ function list_dir($base, $cur, $level=0) {
 function rmElement($element) {
   if (is_dir($element)) {
     $files = scandir($element);
-    foreach ($files as $file)
-    if ($file != "." && $file != "..") rmElement("$dir/$file");
+    foreach ($files as $file){
+      if ($file != "." && $file != ".."){
+        rmElement("$dir/$file");
+      }
+    }
     rmdir($element);
   } elseif (is_file($element)) {
-    rmdir($element);
+    unlink($element);
   }
-  else if (file_exists($dir)) unlink($dir);
 }
 
 // copies files and non-empty directories
 function cutAndPast($src, $dst) {
-  if (file_exists($dst) && is_dir($src)) {
+  if (is_dir($src)) {
     mkdir($dst);
     $files = scandir($src);
     foreach ($files as $file){
@@ -109,7 +111,27 @@ function cutAndPast($src, $dst) {
   }
 }
 
+function copyDir($dirSrc,$dirDest){
+    if (is_dir($dirSrc)) {
+      if ($dh = opendir($dirSrc)) {
+        while (($file = readdir($dh)) !== false) {
 
+        if (!is_dir($dirDest)) {
+          mkdir($dirDest, 0777);
+        }
+        if(is_dir($dirSrc.DIRECTORY_SEPARATOR.$file) && $file != '..' && $file != '.') {
+
+          copyDir ($dirSrc .DIRECTORY_SEPARATOR. $file , $dirDest .DIRECTORY_SEPARATOR. $file );
+
+        } elseif($file != '..' && $file != '.') {
+             copy( $dir2copy .DIRECTORY_SEPARATOR. $file , $dir_paste .DIRECTORY_SEPARATOR. $file );
+          }
+        }
+
+        closedir($dh);
+    }
+  }
+}
 
 
 

@@ -28,9 +28,6 @@ if(isset($_POST['directory'])){ // if no directory select
   } else {
     $navAsidePoint = navAsideGoDown($navAsidePoint);
     $pathCurrent = $pathCurrent . DIRECTORY_SEPARATOR . $directory;
-    if($pathCurrent == null){
-
-    }
   }
 
   $_SESSION['navAsidePoint'] = $navAsidePoint;
@@ -58,9 +55,9 @@ if(isset($_POST['showHideFile'][1]) && $_POST['showHideFile'][1] == "showFile"){
 
 if(isset($_POST['delete'])){
   if(substr($pathCurrent, -9) == "corbeille"){
-    rmElement($_POST['delete']);
+    rmElement($pathCurrent .DIRECTORY_SEPARATOR. $_POST['delete']);
   } else {
-    cutAndPast($pathCurrent . $_POST['delete'] , $pathCurrent . DIRECTORY_SEPARATOR . "corbeille" . $_POST['delete']);
+    cutAndPast($pathCurrent .DIRECTORY_SEPARATOR. $_POST['delete'] , $pathCurrent . DIRECTORY_SEPARATOR . "corbeille" .DIRECTORY_SEPARATOR. $_POST['delete']);
   }
 }
 
@@ -69,13 +66,17 @@ if(isset($_POST['copy'])){
   $_SESSION['copyPath'] = $pathCurrent;
 }
 
+
 if(isset($_POST['past'])){
   if(isset($_SESSION['copyDir']) && isset($_SESSION['copyPath'])){
-    if(copy($_SESSION['copyDir'] .DIRECTORY_SEPARATOR. $_SESSION['copyPath'], $_SESSION['copyDir'] .DIRECTORY_SEPARATOR. $pathCurrent) == false){
-      echo "Le fichier ne peut être copier";
+    $src = $_SESSION['copyPath'] .DIRECTORY_SEPARATOR. $_SESSION['copyDir'];
+    $dest = $pathCurrent.DIRECTORY_SEPARATOR.$_SESSION['copyDir'];
+    if(is_dir($src)){
+      copyDir($src,$dest);
+    } else {
+      copy($src,$dest);
     }
   }
 }
-
 $_SESSION['redirection'] = true;
-header('Location: index.php');
+//header('Location: index.php');
