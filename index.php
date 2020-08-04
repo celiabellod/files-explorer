@@ -29,8 +29,50 @@ $arrayUrl= scandir($pathCurrent);
 $arrayUrl= array_slice($arrayUrl, 2); // Without  et ..
 $_SESSION['currentPath'] = $pathCurrent;
 
+
+foreach ($arrayUrl as $value) {
+
+  if($value == "corbeille"){
+    echo"<div class='container-directory-trash'>
+          <form method='POST' action='logic.php'>
+            <button type='submit' name='directory' value='$value' form='navigation' class='button-folder'>
+              <img src='assets/images/trash.png' alt=''>
+            </button>
+          </form>
+          <p>$value</p>
+        </div>";
+    }
+}
 ?>
 
+<div class="container">
+  <form method="POST" id="navigation" action="logic.php">
+    <h1>Explorateur de fichier</h1>
+
+    <div class="container-directory">
+      <?php include '_showDirectory.php';?>
+    </div>
+
+    <div class="container-navAside">
+      <?php include '_navAside.php';?>
+    </div>
+
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
   <div class="container-explorer">
     <div class="close">
       <div class="container-close">
@@ -75,7 +117,7 @@ $_SESSION['currentPath'] = $pathCurrent;
               <?php breadCrumbs($pathCurrent, $firstDirectory) ?>
           </ul>
         </div>
-<!--
+
         <div class="nav-aside">
           <?php/*
 
@@ -104,7 +146,7 @@ $_SESSION['currentPath'] = $pathCurrent;
           */?>
         </div>
       </nav>
--->
+
       <div class="container-dir">
         <div class="row">
           <?php include '_showDirectory.php';?>
@@ -112,7 +154,7 @@ $_SESSION['currentPath'] = $pathCurrent;
       </div>
     </div>
   </form>
-
+-->
 
 
 <?php include 'footer.php' ?>

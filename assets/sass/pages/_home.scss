@@ -1,33 +1,58 @@
-.container-dir{
-  margin-left: 12vw;
-  text-align: center;
-  border-left: 2px solid grey;
-  padding-left: 3vw;
-  padding-top: 4vh;
-  height: 60vh;
+.container{
+  width: 65vw;
+  height: 70vh;
+  margin-left: 22vw;
+  margin-top: 15vh;
+  background-color: white;
+  border-radius: 10px 15px 15px 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.container-directory{
+  margin: 2.5vw;
+  width: 50vw;
+  margin-top: 25vh;
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
   img {
+    width: 5vw;
+  }
+}
+
+.container-directory-trash{
+  top:4vw;
+  left:5vw;
+  position: absolute;
+  text-align: center;
+  color : white;
+  img{
     width: 4vw;
-    height: auto;
   }
   p{
-    margin-top: 2vh;
-    margin-bottom: 6vh;
+    margin-top: -0.1vh;
+    font-size: 1.1vw;
+    text-shadow: 1px 1px 1px black;
   }
 }
 
-.logo-dir2{
-  margin-left: 2vw;
+.container-directory-folder{
+  text-align: center;
+  margin-bottom: 5vh;
+  margin-right: 2.5vw;
+  font-size: 1.1vw;
+  color : darken(#ECA8A8, 15%);
+  p{
+    margin-top: -0.8vh;
+  }
+  a+p{
+    margin-top: 0.2vh;
+  }
 }
 
-.container-explorer{
-  width: 65vw;
-  height: 80vh;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-  background-color: white;
-  margin-top: 6vh;
-  margin-left: 8vh;
-  overflow: hidden;
-}
+
+
+
 
 .row {
   display: flex;

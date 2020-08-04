@@ -1,9 +1,31 @@
+.container-navAside{
+  float: right;
+  width: 15vw;
+  height: 100%;
+  border-radius: 0 10px 10px 0;
+  background-color: darken(#ECA8A8, 8%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .breadCrumbs {
   font-size: 1vw;
-  margin-left: 12vw;
+  margin-left: 2vw;
   width: 50%;
   padding-top: 2vh;
-  border-left: 2px solid grey;
   ul{
     display: flex;
     margin-bottom: 0;
@@ -13,14 +35,15 @@
     }
   }
 }
-.img_directoryMini{
-  width: 0.8vw;
-  height: 2.5vh;
-  margin-right: 1vw;
-}
+
+
+/*--------------------------*/
+
+
 .nav-aside {
   position: absolute;
-  margin-top: -1.8vh;
+  margin-top: 5vh;
+  margin-left: 3.2vw;
   h5 {
     margin-left: 1vw;
   }

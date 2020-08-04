@@ -123,3 +123,95 @@ $toggleBtn-borderColor--day: #4c241d;
         }
     }
 }
+
+
+.button-folder{
+  background-color: transparent;
+  border: none;
+}
+
+/*
+
+.container2 .container-inner2{
+  background: #EF4D4D;
+  padding: 1em;
+  border-radius: 10px;
+  width: 7vw;
+  height: 45vh;
+  clip-path: circle(3% at 9% 3.5%);
+  transition: all .5s ease-in-out;
+}
+
+.container-inner2 input{
+  position: absolute;
+  margin-top: -1vh;
+  margin-left: 1vw;
+}
+
+.container2:hover .container-inner2{
+  clip-path: circle(75%);
+  background: #EF4D4D;
+}
+
+*/
+
+.container-directory-optionFolder{
+  position: absolute;
+  width: 20vw;
+  height: 25vh;
+  border-radius: 10px;
+  margin-left: 2.2vw;
+  margin-top: -1.5vh;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.container-directory-optionFolder .container-directory-optionInnerFolder{
+  background: #EF4D4D;
+  padding: 1em;
+  border-radius: 10px;
+  width: 7vw;
+  height: 15vh;
+  clip-path: circle(5% at 9% 6%);
+  transition: all .5s ease-in-out;
+}
+
+.container-directory-optionInnerFolder form{
+  margin-top: -1vh;
+  margin-left: 1vw;
+}
+
+.container-directory-optionInnerFolder:hover{
+  clip-path: circle(75%);
+  background: #EF4D4D;
+  z-index: 999;
+}
+
+.container-directory-optionInnerFolder:hover .container-directory-optionInnerFolder span{
+  opacity: 0;
+}
+
+.container-directory-optionInnerFolder span{
+  position: absolute;
+  color: white;
+  font-size: 1.2vw;
+  margin-left: -4.05vw;
+  margin-top: -2.15vh;
+  opacity: 1;
+  transition: 0.5s ease-in-out;
+}
+
+/*
+#button-navAside{
+  border: none;
+  background-color: transparent;
+  font-size: 1vw;
+  color: white;
+  line-height: 180%;
+
+}
+
+li{
+  list-style: none;
+}
+*/
