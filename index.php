@@ -33,7 +33,7 @@ $_SESSION['currentPath'] = $pathCurrent;
 foreach ($arrayUrl as $value) {
 
   if($value == "corbeille"){
-    echo"<div class='container-directory-trash'>
+    echo"<div class='directory-trash'>
           <form method='POST' action='logic.php'>
             <button type='submit' name='directory' value='$value' form='navigation' class='button-folder'>
               <img src='assets/images/trash.png' alt=''>
@@ -45,15 +45,51 @@ foreach ($arrayUrl as $value) {
 }
 ?>
 
+
 <div class="container">
   <form method="POST" id="navigation" action="logic.php">
     <h1>Explorateur de fichier</h1>
+
+    <div class="container-function">
+     <div class="container-function-inner">
+      <span class="seeMoreOption">+</span>
+      <form method="POST" id="function" action="logic.php">
+        <div class="toggle toggle--daynight">
+            <p>Elements masqués</p>
+            <input type="hidden" id="toggle--daynight2" class="toggle--checkbox" name="showHideFile[]" value="hideFile">
+            <input type="checkbox" id="toggle--daynight" class="toggle--checkbox" name="showHideFile[]" value="showFile"
+                  <?php
+                  if(isset($_SESSION['checked']) && $_SESSION['checked'] == "checked"){ ?>
+                    checked
+                  <?php } ?>>
+            <label class="toggle--btn" for="toggle--daynight"><span class="toggle--feature"></span></label>
+        </div>
+
+          <div class="function">
+            <label for="createFile">Nouveau</label>
+            <input type="text" name="create" id="create">
+
+           <button type="submit" name="past">Coller</button>
+
+           <button class="function-applicate" type="submit" form="function">Appliquer</button>
+          </div>
+
+        </form>
+     </div>
+   </div>
+
+   <div class="breadCrumbs">
+     <ul>
+       <button type='submit' name='directory' value='start' form="navigation" class="button-folder"><img src="assets/images/directory-mini.png"  width='20px'></button>
+         <?php breadCrumbs($pathCurrent, $firstDirectory) ?>
+     </ul>
+   </div>
 
     <div class="container-directory">
       <?php include '_showDirectory.php';?>
     </div>
 
-    <div class="container-navAside">
+    <div class="container-Aside">
       <?php include '_navAside.php';?>
     </div>
 

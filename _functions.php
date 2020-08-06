@@ -65,11 +65,11 @@ function list_dir($base, $cur, $level=0) {
       }
 
       if($file == $cur) {
-        echo "<img src='assets/images/directory_mini.png' width='20px'/> $entry<br/>";
+        echo "<img src='assets/images/directory-mini.png' width='20px'/> $entry<br/>";
       } else {
         echo"<form method='POST' action='index.php'>
-              <li><img src='assets/images/directory_mini.png' width='20px'/>
-              <button type='submit' name='dir' value='$file'>$entry</button></li>
+              <li><img src='assets/images/directory-mini.png' width='20px'/>
+              <button type='submit' name='dir' value='$file' class='button-folder'>$entry</button></li>
             </form>";
       }
 

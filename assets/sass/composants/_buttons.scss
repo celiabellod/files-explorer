@@ -1,35 +1,18 @@
-//VARIABLES
 
-//--Dimension
-$toggleHeight: 20px;
-$toggleWidth: 40px;
-$borderWidth: 3px;
-$toggleBtnRadius: $toggleHeight - 10px;
 
-//--Colors ON
 
-$bgColor--night: #fae6e6;
-$borderColor--night: #4c241d;
-$toggleBtn-bgColor--night: #fff;
-$toggleBtn-borderColor--night: #4c241d;
-
-//--Colors OFF
-$bgColor--day: #b5a19c;
-$borderColor--day: #4c241d;
-$toggleBtn-bgColor--day: #fff;
-$toggleBtn-borderColor--day: #4c241d;
 
 
 //All
 .toggle {
     display: flex;
-    flex-direction: column-reverse;
-    text-align: center;
-    margin-top: 4vh;
     user-select: none;
-
+    margin-bottom: 2vh;
     p{
-      margin-right: 1.8vw;
+      margin:0;
+      color: white;
+      margin-right: 2vw;
+      font-size: 1.1vw;
     }
 }
     .toggle--checkbox {
@@ -128,6 +111,7 @@ $toggleBtn-borderColor--day: #4c241d;
 .button-folder{
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 
 /*
@@ -142,76 +126,11 @@ $toggleBtn-borderColor--day: #4c241d;
   transition: all .5s ease-in-out;
 }
 
-.container-inner2 input{
-  position: absolute;
-  margin-top: -1vh;
-  margin-left: 1vw;
-}
+
 
 .container2:hover .container-inner2{
   clip-path: circle(75%);
   background: #EF4D4D;
 }
 
-*/
-
-.container-directory-optionFolder{
-  position: absolute;
-  width: 20vw;
-  height: 25vh;
-  border-radius: 10px;
-  margin-left: 2.2vw;
-  margin-top: -1.5vh;
-  overflow: hidden;
-  border-radius: 10px;
-}
-
-.container-directory-optionFolder .container-directory-optionInnerFolder{
-  background: #EF4D4D;
-  padding: 1em;
-  border-radius: 10px;
-  width: 7vw;
-  height: 15vh;
-  clip-path: circle(5% at 9% 6%);
-  transition: all .5s ease-in-out;
-}
-
-.container-directory-optionInnerFolder form{
-  margin-top: -1vh;
-  margin-left: 1vw;
-}
-
-.container-directory-optionInnerFolder:hover{
-  clip-path: circle(75%);
-  background: #EF4D4D;
-  z-index: 999;
-}
-
-.container-directory-optionInnerFolder:hover .container-directory-optionInnerFolder span{
-  opacity: 0;
-}
-
-.container-directory-optionInnerFolder span{
-  position: absolute;
-  color: white;
-  font-size: 1.2vw;
-  margin-left: -4.05vw;
-  margin-top: -2.15vh;
-  opacity: 1;
-  transition: 0.5s ease-in-out;
-}
-
-/*
-#button-navAside{
-  border: none;
-  background-color: transparent;
-  font-size: 1vw;
-  color: white;
-  line-height: 180%;
-
-}
-
-li{
-  list-style: none;
-}
 */

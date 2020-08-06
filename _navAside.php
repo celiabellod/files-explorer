@@ -1,16 +1,35 @@
-<div class="">
-  <div class="toggle toggle--daynight">
+ <div class="container-navAside2">
+    <div class="nav-aside">
+      <?php
 
-      <p>Elements masqués</p>
-      <input type="hidden" id="toggle--daynight2" class="toggle--checkbox" name="showHideFile[]" value="hideFile">
-      <input type="checkbox" id="toggle--daynight" class="toggle--checkbox" name="showHideFile[]" value="showFile"
-            <?php
-            if(isset($_SESSION['checked']) && $_SESSION['checked'] == "checked"){ ?>
-              checked
-            <?php } ?>>
+      $dir = isset($_POST['dir']) ? $_POST['dir'] : '';
 
-      <label class="toggle--btn" for="toggle--daynight"><span class="toggle--feature"></span></label>
-  </div>
-  <input class="function-applicate" type="submit" value="appliquer">
-</div>
+      if(isset($_SESSION['navAsidePoint'])){
+        $navAsidePoint  = $_SESSION['navAsidePoint'];
+      } else {
+        $navAsidePoint  = '..' . DIRECTORY_SEPARATOR;
+        $_SESSION['navAsidePoint'] = $navAsidePoint;
+      }
+
+      $BASE = $navAsidePoint .  $firstDirectory;
+      if(!$dir) {
+        echo "<div class='name-directoryStart'>
+              <img src='assets/images/directory-mini.png' width='40px'/>
+                <span>Accueil</span>
+              </div>
+              <br />";
+      } else {
+        echo "<img src='assets/images/directory-mini.png' width='40px'/> <p>Accueil</p> <br/>";
+      }
+
+      list_dir($BASE, $dir, 1);
+
+      if(!$dir) {
+        $dir = $BASE;
+      }
+
+      ?>
+
+    </div>
+
 </div>
