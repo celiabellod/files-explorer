@@ -23,7 +23,7 @@ function breadCrumbs($pathCurrent,$firstDirectory) {
     echo "<li></li>";
   } else {
     foreach ($breadCrumbs as $value) {
-      echo "<li><button type='submit' name='directory' value='$value'>$value</button></li>";
+      echo "<li><button type='submit' name='directory' value='$value' form='navigation' class='button-folder button-folder-red'>$value</button></li>";
     }
   }
 }
@@ -42,14 +42,6 @@ function create($pathCurrent, $fileName){
   }
 }
 
-function elementFunction($value){
-  echo "<form method='POST' action='logic.php'>
-          <input type='text' name='rename[]'>
-          <input type='hidden' name='rename[]' value='$value'>
-          <input type='submit' name='rename[]' value='Renommer'>
-        </form>
-       </div>";
-}
 function addScheme($entry) {
   $tab['name'] = $entry;
   return $tab;
@@ -73,11 +65,11 @@ function list_dir($base, $cur, $level=0) {
       }
 
       if($file == $cur) {
-        echo "<img src='assets/images/directory_mini.png' width='20px'/> $entry<br/>";
+        echo "<img src='assets/images/directory-mini.png' width='20px'/> $entry<br/>";
       } else {
         echo"<form method='POST' action='index.php'>
-              <li><img src='assets/images/directory_mini.png' width='20px'/>
-              <button type='submit' name='dir' value='$file'>$entry</button></li>
+              <li><img src='assets/images/directory-mini.png' width='20px'/>
+              <button type='submit' name='dir' value='$file' class='button-folder'>$entry</button></li>
             </form>";
       }
 
@@ -90,6 +82,56 @@ function list_dir($base, $cur, $level=0) {
 }
 
 
+function rmElement($element) {
+  if (is_dir($element)) {
+    $files = scandir($element);
+    foreach ($files as $file){
+      if ($file != "." && $file != ".."){
+        rmElement("$element/$file");
+      }
+    }
+    rmdir($element);
+  } elseif (is_file($element)) {
+    unlink($element);
+  }
+}
+
+// copies files and non-empty directories
+function cutAndPast($src, $dst) {
+  if (is_dir($src)) {
+    mkdir($dst);
+    $files = scandir($src);
+    foreach ($files as $file){
+      if ($file != "." && $file != "..") cutAndPast("$src/$file", "$dst/$file");
+    }
+    rmElement($src);
+  }elseif (is_file($dst)) {
+    touch($dst);
+    rmElement($src);
+  }
+}
+
+function copyDir($dirSrc,$dirDest){
+    if (is_dir($dirSrc)) {
+      if ($dh = opendir($dirSrc)) {
+        while (($file = readdir($dh)) !== false) {
+
+        if (!is_dir($dirDest)) {
+          mkdir($dirDest, 0777);
+        }
+        if(is_dir($dirSrc.DIRECTORY_SEPARATOR.$file) && $file != '..' && $file != '.') {
+
+          copyDir ($dirSrc .DIRECTORY_SEPARATOR. $file , $dirDest .DIRECTORY_SEPARATOR. $file );
+
+        } elseif($file != '..' && $file != '.') {
+             copy($dirSrc .DIRECTORY_SEPARATOR. $file , $dirDest .DIRECTORY_SEPARATOR. $file );
+          }
+        }
+
+        closedir($dh);
+    }
+  }
+}
 
 
 
@@ -100,7 +142,6 @@ foreach ($startArray as $value) {
   $keyHideFile = array_keys($hideFile);
   $fileHideShow = show($hideFile);
 }
-
   function hide($file) {
     $fileArray = explode(" ", $file);
      foreach ($fileArray as $key => $value) {
@@ -111,11 +152,11 @@ foreach ($startArray as $value) {
         return $fileArray;
     }
   }
-
   function show($hideFile) {
     foreach ($hideFile as $value) {
       echo $value;
     }
   }
 */
+
 ?>

@@ -28,9 +28,6 @@ if(isset($_POST['directory'])){ // if no directory select
   } else {
     $navAsidePoint = navAsideGoDown($navAsidePoint);
     $pathCurrent = $pathCurrent . DIRECTORY_SEPARATOR . $directory;
-    if($pathCurrent == null){
-
-    }
   }
 
   $_SESSION['navAsidePoint'] = $navAsidePoint;
@@ -56,5 +53,43 @@ if(isset($_POST['showHideFile'][1]) && $_POST['showHideFile'][1] == "showFile"){
     $_SESSION['checked'] = "unchecked";
 }
 
+if(isset($_POST['delete'])){
+  if(substr($pathCurrent, -9) == "corbeille"){
+    rmElement($pathCurrent .DIRECTORY_SEPARATOR. $_POST['delete']);
+  } else {
+    $_SESSION['deletePath'] = $pathCurrent;
+    $_SESSION['deleteDir'] = $_POST['delete'];
+    cutAndPast($pathCurrent .DIRECTORY_SEPARATOR. $_POST['delete'] , $pathCurrent . DIRECTORY_SEPARATOR . "corbeille" .DIRECTORY_SEPARATOR. $_POST['delete']);
+  }
+}
 
-header('Location: index.php');
+if(isset($_POST['copy'])){
+  $_SESSION['copyDir'] = $_POST['copy'];
+  $_SESSION['copyPath'] = $pathCurrent;
+}
+
+
+if(isset($_POST['past'])){
+  if(isset($_SESSION['copyDir']) && isset($_SESSION['copyPath'])){
+    $src = $_SESSION['copyPath'] .DIRECTORY_SEPARATOR. $_SESSION['copyDir'];
+    $dest = $pathCurrent.DIRECTORY_SEPARATOR.$_SESSION['copyDir'];
+    if(is_dir($src)){
+      copyDir($src,$dest);
+    } else {
+      copy($src,$dest);
+    }
+  }
+}
+
+if(isset($_POST['restaure'])){
+  if(isset($_SESSION['deletePath']) && isset($_SESSION['deleteDir'])){
+    $dest = $_SESSION['deletePath'] .DIRECTORY_SEPARATOR.  $_SESSION['deleteDir'];
+    $src = $pathCurrent.DIRECTORY_SEPARATOR. $_SESSION['deleteDir'];
+    cutAndPast($src , $dest);
+    echo $src;
+    echo $dest;
+  }
+}
+
+$_SESSION['redirection'] = true;
+//header('Location: index.php');

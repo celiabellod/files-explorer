@@ -44,3 +44,6 @@
 
   </body>
 </html>
+
+<? unset($_SESSION['navAsidePoint']);
+  unset($_SESSION['redirection']);
