@@ -26,14 +26,9 @@ body {
   background-size: cover;
 }
 
-li {
-  list-style: none;
-}
-
 .toggle {
   display: flex;
   user-select: none;
-  margin-bottom: 2vh;
 }
 .toggle p {
   margin: 0;
@@ -116,6 +111,12 @@ li {
   background-color: transparent;
   border: none;
   cursor: pointer;
+  color: white;
+  font-weight: bold;
+}
+
+.button-folder-red {
+  color: #e58787;
 }
 
 /*
@@ -174,33 +175,26 @@ li {
 }
 
 .nav-aside {
-  margin-left: 3.2vw;
+  color: white;
+  font-weight: bold;
+  margin-top: 6vh;
+  margin-left: 2vh;
 }
-.nav-aside h5 {
-  margin-left: 1vw;
-}
-.nav-aside ul {
-  margin-top: -2vh;
-}
-.nav-aside ul li {
+.nav-aside li {
   list-style: none;
-  margin-left: 0.5vw;
-  display: flex;
-  align-items: start;
-  margin-top: 1vh;
+  padding-left: 5vh;
 }
 
 .breadCrumbs {
   font-size: 1vw;
-  margin-left: 2vw;
   width: 50%;
-  padding-top: 2vh;
   position: absolute;
-  margin-top: 10vh;
+  margin-top: 13vh;
 }
 .breadCrumbs ul {
   display: flex;
   margin-bottom: 0;
+  align-items: center;
 }
 .breadCrumbs ul li {
   list-style: inside url("../images/right-arrow.svg");
@@ -208,9 +202,9 @@ li {
 }
 
 .container {
-  width: 68vw;
+  width: 73vw;
   height: 70vh;
-  margin-left: 20vw;
+  margin-left: 23vw;
   margin-top: 15vh;
   background-color: white;
   border-radius: 10px 15px 15px 10px;
@@ -219,11 +213,13 @@ li {
 
 .container-directory {
   margin: 2.5vw;
-  width: 60vw;
+  width: 55.5vw;
   margin-top: 25vh;
+  height: 45vh;
   position: absolute;
   display: flex;
   flex-wrap: wrap;
+  overflow-x: auto;
 }
 .container-directory img {
   width: 5vw;
@@ -238,8 +234,8 @@ li {
 }
 
 .directory-trash {
-  top: 4vw;
-  left: 5vw;
+  top: 20vw;
+  left: 8vw;
   position: absolute;
   text-align: center;
   color: white;
@@ -274,38 +270,39 @@ li {
   text-align: center;
 }
 
-.container-function {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 15vw;
-}
-
-.container-function .container-function-inner {
-  background: #EF4D4D;
-  padding: 1em;
-  border-radius: 10px;
-  width: 15vw;
-  height: 25vh;
-  clip-path: circle(3% at 9% 3.5%);
-  transition: all 0.5s ease-in-out;
-  position: absolute;
-}
-
-.container-function:hover .container-function-inner {
-  clip-path: circle(75%);
-  background: #EF4D4D;
-}
-
 .function {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  background: #EF4D4D;
+  border-radius: 10px;
+  width: 15vw;
+  height: 18vh;
+  position: absolute;
+  top: 2vh;
+  left: 2vw;
+  padding: 1vw;
 }
 .function label {
   color: white;
+  font-size: 1.1vw;
+}
+.function input {
+  margin-bottom: 1vh;
 }
 .function button {
-  margin-top: 2vh;
+  background-color: transparent;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1vw;
+  border-bottom: 1px solid #ECA8A8;
+  padding-bottom: 1vh;
+}
+.function button:last-child {
+  margin-top: 1vh;
+  border: none;
 }
 
 .directory-optionFolder {
@@ -314,7 +311,7 @@ li {
   height: 15vh;
   border-radius: 10px;
   overflow: hidden;
-  margin-left: 12vw;
+  margin-left: 10vw;
   margin-top: -8vh;
 }
 
@@ -342,14 +339,20 @@ li {
 .directory-optionInnerFolder button, .directory-optionInnerFolder input {
   margin-top: 1vh;
   margin-left: -8vw;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 0.5vh;
 }
 
 .seeMoreOption {
   position: absolute;
   color: white;
   font-size: 1.2vw;
-  margin-left: -7.3vw;
-  margin-top: -2.15vh;
+  margin-left: -7.75vw;
+  margin-top: -2vh;
   opacity: 1;
   transition: 0.5s ease-in-out;
 }

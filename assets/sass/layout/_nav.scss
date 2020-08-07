@@ -1,31 +1,25 @@
 .nav-aside {
-  margin-left: 3.2vw;
-  h5 {
-    margin-left: 1vw;
+  color:white;
+  font-weight: bold;
+  margin-top: 6vh;
+  margin-left: 2vh;
+  li{
+    list-style: none;
+    padding-left: 5vh;
   }
-  ul {
-    margin-top: -2vh;
-    li {
-      list-style: none;
-      margin-left: 0.5vw;
-      display: flex;
-      align-items: start;
-      margin-top: 1vh;
-    }
-  }
+
 }
 
 
 .breadCrumbs {
   font-size: 1vw;
-  margin-left: 2vw;
   width: 50%;
-  padding-top: 2vh;
   position: absolute;
-  margin-top: 10vh;
+  margin-top: 13vh;
   ul{
     display: flex;
     margin-bottom: 0;
+    align-items: center;
     li {
       list-style: inside url('../images/right-arrow.svg');
       margin-right: 2vw;

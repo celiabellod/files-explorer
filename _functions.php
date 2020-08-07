@@ -23,7 +23,7 @@ function breadCrumbs($pathCurrent,$firstDirectory) {
     echo "<li></li>";
   } else {
     foreach ($breadCrumbs as $value) {
-      echo "<li><button type='submit' name='directory' value='$value' form='navigation'>$value</button></li>";
+      echo "<li><button type='submit' name='directory' value='$value' form='navigation' class='button-folder button-folder-red'>$value</button></li>";
     }
   }
 }

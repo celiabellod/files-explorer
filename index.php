@@ -50,33 +50,28 @@ foreach ($arrayUrl as $value) {
   <form method="POST" id="navigation" action="logic.php">
     <h1>Explorateur de fichier</h1>
 
-    <div class="container-function">
-     <div class="container-function-inner">
-      <span class="seeMoreOption">+</span>
-      <form method="POST" id="function" action="logic.php">
-        <div class="toggle toggle--daynight">
-            <p>Elements masqués</p>
-            <input type="hidden" id="toggle--daynight2" class="toggle--checkbox" name="showHideFile[]" value="hideFile">
-            <input type="checkbox" id="toggle--daynight" class="toggle--checkbox" name="showHideFile[]" value="showFile"
-                  <?php
-                  if(isset($_SESSION['checked']) && $_SESSION['checked'] == "checked"){ ?>
-                    checked
-                  <?php } ?>>
-            <label class="toggle--btn" for="toggle--daynight"><span class="toggle--feature"></span></label>
-        </div>
+    <form method="POST" id="function" action="logic.php">
+        <div class="function">
+          <div class="toggle toggle--daynight">
+              <p>Elements masqués</p>
+              <input type="hidden" id="toggle--daynight2" class="toggle--checkbox" name="showHideFile[]" value="hideFile">
+              <input type="checkbox" id="toggle--daynight" class="toggle--checkbox" name="showHideFile[]" value="showFile"
+                    <?php
+                    if(isset($_SESSION['checked']) && $_SESSION['checked'] == "checked"){ ?>
+                      checked
+                    <?php } ?>>
+              <label class="toggle--btn" for="toggle--daynight"><span class="toggle--feature"></span></label>
+          </div>
 
-          <div class="function">
-            <label for="createFile">Nouveau</label>
-            <input type="text" name="create" id="create">
+          <label for="createFile">Nouveau</label>
+          <input type="text" name="create" id="create" pattern="[A-Za-z]{3,10}">
+          <button class="function-applicate" type="submit">Appliquer</button>
+          <button type="submit" name="past">Coller</button>
 
-           <button type="submit" name="past">Coller</button>
-
-           <button class="function-applicate" type="submit" form="function">Appliquer</button>
           </div>
 
         </form>
-     </div>
-   </div>
+
 
    <div class="breadCrumbs">
      <ul>

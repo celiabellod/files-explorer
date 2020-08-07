@@ -1,7 +1,7 @@
 .container{
-  width: 68vw;
+  width: 73vw;
   height: 70vh;
-  margin-left: 20vw;
+  margin-left: 23vw;
   margin-top: 15vh;
   background-color: white;
   border-radius: 10px 15px 15px 10px;
@@ -10,11 +10,13 @@
 
 .container-directory{
   margin: 2.5vw;
-  width: 60vw;
+  width: 55.5vw;
   margin-top: 25vh;
+  height:45vh;
   position: absolute;
   display: flex;
   flex-wrap: wrap;
+  overflow-x: auto;
   img {
     width: 5vw;
   }
@@ -28,10 +30,9 @@
   border-radius: 0 10px 10px 0;
   background-color: darken(#ECA8A8, 8%);
 }
-
 .directory-trash{
-  top:4vw;
-  left:5vw;
+  top:20vw;
+  left:8vw;
   position: absolute;
   text-align: center;
   color : white;
@@ -66,38 +67,38 @@
   }
 }
 
-.container-function {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 15vw;
-}
-
-.container-function .container-function-inner{
-  background: #EF4D4D;
-  padding: 1em;
-  border-radius: 10px;
-  width: 15vw;
-  height: 25vh;
-  clip-path: circle(3% at 9% 3.5%);
-  transition: all .5s ease-in-out;
-  position: absolute;
-
-}
-
-.container-function:hover .container-function-inner{
-  clip-path: circle(75%);
-  background: #EF4D4D;
-}
-
 .function {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  background: #EF4D4D;
+  border-radius: 10px;
+  width: 15vw;
+  height: 18vh;
+  position: absolute;
+  top:2vh;
+  left:2vw;
+  padding: 1vw;
   label {
     color:white;
+    font-size: 1.1vw;
+  }
+  input {
+    margin-bottom: 1vh;
   }
   button{
-    margin-top: 2vh;
+    background-color: transparent;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1vw;
+    border-bottom: 1px solid #ECA8A8;
+    padding-bottom: 1vh;
+    &:last-child {
+      margin-top: 1vh;
+      border: none;
+    }
   }
 }
 
@@ -107,7 +108,7 @@
   height: 15vh;
   border-radius: 10px;
   overflow: hidden;
-  margin-left: 12vw;
+  margin-left: 10vw;
   margin-top: -8vh;
 }
 
@@ -135,16 +136,19 @@
   margin-top: 1vh;
   margin-left: -8vw;
   background-color: transparent;
-  
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 0.5vh;
 }
-
 
 .seeMoreOption{
   position: absolute;
   color: white;
   font-size: 1.2vw;
-  margin-left: -7.3vw;
-  margin-top: -2.15vh;
+  margin-left: -7.75vw;
+  margin-top: -2vh;
   opacity: 1;
   transition: 0.5s ease-in-out;
 }

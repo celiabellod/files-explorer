@@ -7,7 +7,6 @@
 .toggle {
     display: flex;
     user-select: none;
-    margin-bottom: 2vh;
     p{
       margin:0;
       color: white;
@@ -112,8 +111,12 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+  color: white;
+  font-weight: bold;
 }
-
+.button-folder-red{
+  color: darken(#ECA8A8, 8%);
+}
 /*
 
 .container2 .container-inner2{

@@ -14,12 +14,12 @@
       $BASE = $navAsidePoint .  $firstDirectory;
       if(!$dir) {
         echo "<div class='name-directoryStart'>
-              <img src='assets/images/directory-mini.png' width='40px'/>
+              <img src='assets/images/directory.png' width='40px'/>
                 <span>Accueil</span>
               </div>
               <br />";
       } else {
-        echo "<img src='assets/images/directory-mini.png' width='40px'/> <p>Accueil</p> <br/>";
+        echo "<img src='assets/images/directory.png' width='40px'/> <p>Accueil</p> <br/>";
       }
 
       list_dir($BASE, $dir, 1);
@@ -31,5 +31,6 @@
       ?>
 
     </div>
+
 
 </div>
