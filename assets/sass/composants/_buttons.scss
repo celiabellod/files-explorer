@@ -1,0 +1,139 @@
+
+
+
+
+
+//All
+.toggle {
+    display: flex;
+    user-select: none;
+    p{
+      margin:0;
+      color: white;
+      margin-right: 2vw;
+      font-size: 1.1vw;
+    }
+}
+    .toggle--checkbox {
+    display: none;
+    }
+    .toggle--btn {
+        display: block;
+        margin: 0 auto;
+
+        font-size: 1.4em;
+
+        transition: all 350ms ease-in;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .toggle--btn,
+    .toggle--checkbox, {
+        &,
+        &:before,
+        &:after {
+            transition: all 250ms ease-in;
+        }
+        &:before,
+        &:after {
+            content: '';
+            display: block;
+        }
+    }
+
+//Like
+
+
+
+.toggle--daynight,
+.toggle--like {
+    .toggle--btn {
+        position: relative;
+        height: $toggleHeight;
+        width: $toggleWidth;
+        border-radius: $toggleHeight;
+
+        //toggle button
+        &:before {
+            position: absolute;
+            top: 2px;
+            left: 4px;
+            width: $toggleBtnRadius;
+            height: $toggleBtnRadius;
+            border-radius: 50%;
+        }
+    }
+}
+
+.toggle--daynight {
+    .toggle--btn {
+        border: $borderWidth solid $borderColor--night;
+        background-color: $bgColor--night;
+
+        //toggle button
+        &:before {
+            background-color: $toggleBtn-bgColor--night;
+            border: $borderWidth solid $toggleBtn-borderColor--night;
+        }
+  }
+
+
+    //what happens once checkbox is checked
+    .toggle--checkbox:checked {
+         & + .toggle--btn {
+            background-color: $bgColor--day;
+            border: $borderWidth solid $borderColor--day;
+
+            &:before {
+                left: $toggleWidth - ($toggleBtnRadius) - ($borderWidth * 2) - 4px;
+                background-color: $toggleBtn-bgColor--day;
+                border: $borderWidth solid $toggleBtn-borderColor--day;
+            }
+            &:after {
+                opacity: 100;
+                animation-name: bounceIn;
+                animation-duration: 0.60s;
+                animation-delay: 0.10s;
+                animation-fill-mode: backwards;
+                animation-timing-function: ease-in-out;
+            }
+
+
+        }
+    }
+}
+
+
+.button-folder{
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+}
+.button-folder-red{
+  color: darken(#ECA8A8, 8%);
+}
+/*
+
+.container2 .container-inner2{
+  background: #EF4D4D;
+  padding: 1em;
+  border-radius: 10px;
+  width: 7vw;
+  height: 45vh;
+  clip-path: circle(3% at 9% 3.5%);
+  transition: all .5s ease-in-out;
+}
+
+
+
+.container2:hover .container-inner2{
+  clip-path: circle(75%);
+  background: #EF4D4D;
+}
+
+*/

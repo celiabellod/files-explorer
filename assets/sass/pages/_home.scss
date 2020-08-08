@@ -1,0 +1,204 @@
+.container{
+  width: 73vw;
+  height: 70vh;
+  margin-left: 23vw;
+  margin-top: 15vh;
+  background-color: white;
+  border-radius: 10px 15px 15px 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.container-directory{
+  margin: 2.5vw;
+  width: 55.5vw;
+  margin-top: 25vh;
+  height:45vh;
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-x: auto;
+  img {
+    width: 5vw;
+  }
+}
+
+
+.container-Aside{
+  float: right;
+  width: 15vw;
+  height: 70vh;
+  border-radius: 0 10px 10px 0;
+  background-color: darken(#ECA8A8, 8%);
+}
+
+.directory-trash{
+  top:20vw;
+  left:8vw;
+  position: absolute;
+  text-align: center;
+  color : white;
+  img{
+    width: 4vw;
+  }
+  p{
+    margin-top: -0.1vh;
+    font-size: 1.1vw;
+    text-shadow: 1px 1px 1px black;
+  }
+}
+
+.directory-folder{
+  text-align: center;
+  margin-bottom: 5vh;
+  margin-right: 2.5vw;
+  font-size: 1.1vw;
+  color : darken(#ECA8A8, 15%);
+  p{
+    margin-top: -0.8vh;
+  }
+  a+p{
+    margin-top: 0.2vh;
+  }
+  a>img{
+    width: 34px !important;
+  }
+}
+
+.aside {
+  color: white;
+  p {
+    text-align: center;
+  }
+}
+
+.globalFunctionality {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  background: #EF4D4D;
+  border-radius: 10px;
+  width: 15vw;
+  height: 18vh;
+  position: absolute;
+  top:2vh;
+  left:2vw;
+  padding: 1vw;
+  label {
+    color:white;
+    font-size: 1.1vw;
+  }
+  input {
+    margin-bottom: 1vh;
+  }
+  button{
+    background-color: transparent;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1vw;
+    border-bottom: 1px solid #ECA8A8;
+    padding-bottom: 1vh;
+    &:last-child {
+      margin-top: 1vh;
+      border: none;
+    }
+  }
+}
+
+.directory-optionFolder{
+  position: absolute;
+  width: 10vw;
+  height: 18vh;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-left: 10vw;
+  margin-top: -8vh;
+}
+
+.directory-optionFolder--trash{
+  margin-left: 1vw;
+  margin-top: 0vh;
+}
+
+.directory-optionFolder .directory-optionInnerFolder{
+  background: #EF4D4D;
+  padding: 1em;
+  border-radius: 10px;
+  width: 15vw;
+  height: 20vh;
+  clip-path: circle(4% at 9% 6%);
+  transition: all .5s ease-in-out;
+  flex-direction: column;
+  display: flex;
+}
+
+
+.directory-optionInnerFolder:hover{
+  clip-path: circle(90%);
+  background: #EF4D4D;
+  z-index: 999;
+}
+.directory-optionInnerFolder button, .directory-optionInnerFolder input{
+  margin-top: 1vh;
+  margin-left: -8vw;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 0.5vh;
+}
+
+.seeMoreOption{
+  position: absolute;
+  color: white;
+  font-size: 1.2vw;
+  margin-left: -7.75vw;
+  margin-top: -2vh;
+  opacity: 1;
+  transition: 0.5s ease-in-out;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.row {
+  display: flex;
+}
+
+.close {
+  display: flex;
+  justify-content: flex-end;
+  img {
+    width: 1vw;
+    height: 2vh;
+    padding: .8rem;
+  }
+}
+
+.container-close{
+  width: 4vw;
+  display: flex;
+  justify-content: center;
+  transition: 0.2s;
+  &:hover{
+    background-color: red;
+  }
+}
+
+.container-close img:hover{
+  filter: invert(100%);
+}

@@ -1,0 +1,17 @@
+//--Dimension
+$toggleHeight: 15px;
+$toggleWidth: 30px;
+$borderWidth: 3px;
+$toggleBtnRadius: $toggleHeight - 10px;
+
+//--Colors ON
+$bgColor--night: #fff;
+$borderColor--night: #fff;
+$toggleBtn-bgColor--night: #ECA8A8;
+$toggleBtn-borderColor--night: #ECA8A8;
+
+//--Colors OFF
+$bgColor--day: #ECA8A8;
+$borderColor--day:#ECA8A8;
+$toggleBtn-bgColor--day:#fff;
+$toggleBtn-borderColor--day:#fff;

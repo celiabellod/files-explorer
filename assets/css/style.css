@@ -1,0 +1,397 @@
+@font-face {
+  font-family: "Varta";
+  src: url("../fonts/Varta-Regular.eot");
+  src: url("../fonts/Varta-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/Varta-Regular.woff2") format("woff2"), url("../fonts/Varta-Regular.woff") format("woff"), url("../fonts/Varta-Regular.ttf") format("truetype"), url("../fonts/Varta-Regular.svg#Varta-Regular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+body {
+  font-family: Varta;
+}
+
+h5 {
+  font-size: 1vw;
+}
+
+h1 {
+  position: absolute;
+  padding-left: 3vw;
+  font-size: 2.8vw;
+  color: #de6969;
+}
+
+body {
+  background-image: url("../images/background.jpg");
+  background-size: cover;
+}
+
+.toggle {
+  display: flex;
+  user-select: none;
+}
+.toggle p {
+  margin: 0;
+  color: white;
+  margin-right: 2vw;
+  font-size: 1.1vw;
+}
+
+.toggle--checkbox {
+  display: none;
+}
+
+.toggle--btn {
+  display: block;
+  margin: 0 auto;
+  font-size: 1.4em;
+  transition: all 350ms ease-in;
+}
+.toggle--btn:hover {
+  cursor: pointer;
+}
+
+.toggle--btn, .toggle--btn:before, .toggle--btn:after,
+.toggle--checkbox,
+.toggle--checkbox:before,
+.toggle--checkbox:after {
+  transition: all 250ms ease-in;
+}
+.toggle--btn:before, .toggle--btn:after,
+.toggle--checkbox:before,
+.toggle--checkbox:after {
+  content: "";
+  display: block;
+}
+
+.toggle--daynight .toggle--btn,
+.toggle--like .toggle--btn {
+  position: relative;
+  height: 15px;
+  width: 30px;
+  border-radius: 15px;
+}
+.toggle--daynight .toggle--btn:before,
+.toggle--like .toggle--btn:before {
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.toggle--daynight .toggle--btn {
+  border: 3px solid #fff;
+  background-color: #fff;
+}
+.toggle--daynight .toggle--btn:before {
+  background-color: #ECA8A8;
+  border: 3px solid #ECA8A8;
+}
+.toggle--daynight .toggle--checkbox:checked + .toggle--btn {
+  background-color: #ECA8A8;
+  border: 3px solid #ECA8A8;
+}
+.toggle--daynight .toggle--checkbox:checked + .toggle--btn:before {
+  left: 15px;
+  background-color: #fff;
+  border: 3px solid #fff;
+}
+.toggle--daynight .toggle--checkbox:checked + .toggle--btn:after {
+  opacity: 100;
+  animation-name: bounceIn;
+  animation-duration: 0.6s;
+  animation-delay: 0.1s;
+  animation-fill-mode: backwards;
+  animation-timing-function: ease-in-out;
+}
+
+.button-folder {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+}
+
+.button-folder-red {
+  color: #e58787;
+}
+
+/*
+
+.container2 .container-inner2{
+  background: #EF4D4D;
+  padding: 1em;
+  border-radius: 10px;
+  width: 7vw;
+  height: 45vh;
+  clip-path: circle(3% at 9% 3.5%);
+  transition: all .5s ease-in-out;
+}
+
+
+
+.container2:hover .container-inner2{
+  clip-path: circle(75%);
+  background: #EF4D4D;
+}
+
+*/
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 20vw;
+  top: 20vh;
+  width: 40vw;
+  height: 100vh;
+  overflow: auto;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 20px;
+  width: 28vw;
+  height: 35vh;
+  overflow: auto;
+  box-shadow: 0 10px 20px rgba(239, 77, 77, 0.19), 0 6px 6px rgba(239, 77, 77, 0.23);
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.closet {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.closet:hover,
+.closet:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav-aside {
+  color: white;
+  font-weight: bold;
+  margin-top: 6vh;
+  margin-left: 2vh;
+  height: 50vh;
+  overflow-y: auto;
+}
+.nav-aside li {
+  font-size: 1.1vw;
+  list-style: none;
+  padding-left: 2vh;
+}
+
+.breadCrumbs {
+  font-size: 1vw;
+  width: 50%;
+  position: absolute;
+  margin-top: 11vh;
+}
+.breadCrumbs ul {
+  display: flex;
+  margin-bottom: 0;
+  align-items: center;
+}
+.breadCrumbs ul li {
+  list-style: inside url("../images/enter.svg");
+  margin-right: 1vw;
+}
+
+.container {
+  width: 73vw;
+  height: 70vh;
+  margin-left: 23vw;
+  margin-top: 15vh;
+  background-color: white;
+  border-radius: 10px 15px 15px 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.container-directory {
+  margin: 2.5vw;
+  width: 55.5vw;
+  margin-top: 25vh;
+  height: 45vh;
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-x: auto;
+}
+.container-directory img {
+  width: 5vw;
+}
+
+.container-Aside {
+  float: right;
+  width: 15vw;
+  height: 70vh;
+  border-radius: 0 10px 10px 0;
+  background-color: #e58787;
+}
+
+.directory-trash {
+  top: 20vw;
+  left: 8vw;
+  position: absolute;
+  text-align: center;
+  color: white;
+}
+.directory-trash img {
+  width: 4vw;
+}
+.directory-trash p {
+  margin-top: -0.1vh;
+  font-size: 1.1vw;
+  text-shadow: 1px 1px 1px black;
+}
+
+.directory-folder {
+  text-align: center;
+  margin-bottom: 5vh;
+  margin-right: 2.5vw;
+  font-size: 1.1vw;
+  color: #de6969;
+}
+.directory-folder p {
+  margin-top: -0.8vh;
+}
+.directory-folder a + p {
+  margin-top: 0.2vh;
+}
+.directory-folder a > img {
+  width: 34px !important;
+}
+
+.aside {
+  color: white;
+}
+.aside p {
+  text-align: center;
+}
+
+.globalFunctionality {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  background: #EF4D4D;
+  border-radius: 10px;
+  width: 15vw;
+  height: 18vh;
+  position: absolute;
+  top: 2vh;
+  left: 2vw;
+  padding: 1vw;
+}
+.globalFunctionality label {
+  color: white;
+  font-size: 1.1vw;
+}
+.globalFunctionality input {
+  margin-bottom: 1vh;
+}
+.globalFunctionality button {
+  background-color: transparent;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1vw;
+  border-bottom: 1px solid #ECA8A8;
+  padding-bottom: 1vh;
+}
+.globalFunctionality button:last-child {
+  margin-top: 1vh;
+  border: none;
+}
+
+.directory-optionFolder {
+  position: absolute;
+  width: 10vw;
+  height: 18vh;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-left: 10vw;
+  margin-top: -8vh;
+}
+
+.directory-optionFolder--trash {
+  margin-left: 1vw;
+  margin-top: 0vh;
+}
+
+.directory-optionFolder .directory-optionInnerFolder {
+  background: #EF4D4D;
+  padding: 1em;
+  border-radius: 10px;
+  width: 15vw;
+  height: 20vh;
+  clip-path: circle(4% at 9% 6%);
+  transition: all 0.5s ease-in-out;
+  flex-direction: column;
+  display: flex;
+}
+
+.directory-optionInnerFolder:hover {
+  clip-path: circle(90%);
+  background: #EF4D4D;
+  z-index: 999;
+}
+
+.directory-optionInnerFolder button, .directory-optionInnerFolder input {
+  margin-top: 1vh;
+  margin-left: -8vw;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 0.5vh;
+}
+
+.seeMoreOption {
+  position: absolute;
+  color: white;
+  font-size: 1.2vw;
+  margin-left: -7.75vw;
+  margin-top: -2vh;
+  opacity: 1;
+  transition: 0.5s ease-in-out;
+}
+
+.row {
+  display: flex;
+}
+
+.close {
+  display: flex;
+  justify-content: flex-end;
+}
+.close img {
+  width: 1vw;
+  height: 2vh;
+  padding: 0.8rem;
+}
+
+.container-close {
+  width: 4vw;
+  display: flex;
+  justify-content: center;
+  transition: 0.2s;
+}
+.container-close:hover {
+  background-color: red;
+}
+
+.container-close img:hover {
+  filter: invert(100%);
+}
+
+/*# sourceMappingURL=style.css.map */

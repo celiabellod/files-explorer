@@ -1,0 +1,29 @@
+.nav-aside {
+  color:white;
+  font-weight: bold;
+  margin-top: 6vh;
+  margin-left: 2vh;
+  height: 50vh;
+  overflow-y: auto;
+  li{
+    font-size: 1.1vw;
+    list-style: none;
+    padding-left: 2vh;
+  }
+}
+
+.breadCrumbs {
+  font-size: 1vw;
+  width: 50%;
+  position: absolute;
+  margin-top: 11vh;
+  ul{
+    display: flex;
+    margin-bottom: 0;
+    align-items: center;
+    li {
+      list-style: inside url('../images/enter.svg');
+      margin-right: 1vw;
+    }
+  }
+}

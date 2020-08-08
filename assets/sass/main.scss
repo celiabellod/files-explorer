@@ -1,0 +1,19 @@
+
+// UTILS
+@import "./utils/variables";
+
+
+//BASE
+@import "./base/typo";
+@import "./base/base";
+
+//COMPOSANT
+@import "./composants/buttons";
+@import "./composants/modal";
+
+//lAYOUT
+@import "./layout/nav";
+
+
+//PAGES
+@import "./pages/home";
