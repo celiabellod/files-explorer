@@ -1,7 +1,6 @@
-<?php
-session_start();
-include '_functions.php';
-
+<?php include '_inc.php';
+$functionnality = new Functionality();
+$tools = new Tools();
 
 if(isset($_SESSION['currentPath'])){
   $pathCurrent = $_SESSION['currentPath'];
@@ -23,10 +22,10 @@ if(isset($_POST['directory'])){ // if no directory select
     $numberArrayBefore = count($pathArrayBefore);
     $numberArrayAfter= count($pathArrayAfter);
     $newPosition  = $numberArrayBefore - $numberArrayAfter;
-    $navAsidePoint = navAsideGoUp($newPosition, $navAsidePoint);
+    $navAsidePoint = $tools->navAsideGoUp($newPosition, $navAsidePoint);
 
   } else {
-    $navAsidePoint = navAsideGoDown($navAsidePoint);
+    $navAsidePoint = $tools->navAsideGoDown($navAsidePoint);
     $pathCurrent = $pathCurrent . DIRECTORY_SEPARATOR . $directory;
   }
 
@@ -37,14 +36,14 @@ if(isset($_POST['directory'])){ // if no directory select
 
 if(isset($_POST['rename']) && !empty($_POST['rename'][0])){
   if(file_exists($pathCurrent .DIRECTORY_SEPARATOR. $_POST['rename'][1])){
-    renameElement($pathCurrent, $_POST['rename']);
+    $functionnality->renameElement($pathCurrent, $_POST['rename']);
   }else{
     echo $_POST['rename'][1] . ' n\'existe pas';
   }
 }
 
 if(isset($_POST['create']) && !empty($_POST['create'])){
-  create($pathCurrent, $_POST['create']);
+  $functionnality->create($pathCurrent, $_POST['create']);
 }
 
 if(isset($_POST['showHideFile'][1]) && $_POST['showHideFile'][1] == "showFile"){
@@ -54,12 +53,22 @@ if(isset($_POST['showHideFile'][1]) && $_POST['showHideFile'][1] == "showFile"){
 }
 
 if(isset($_POST['delete'])){
+  $directoryDelete = $_POST['delete'];
   if(substr($pathCurrent, -9) == "corbeille"){
-    rmElement($pathCurrent .DIRECTORY_SEPARATOR. $_POST['delete']);
+    $functionnality->rmElement($pathCurrent .DIRECTORY_SEPARATOR. $directoryDelete);
   } else {
-    $_SESSION['deletePath'] = $pathCurrent;
-    $_SESSION['deleteDir'] = $_POST['delete'];
-    cutAndPast($pathCurrent .DIRECTORY_SEPARATOR. $_POST['delete'] , $pathCurrent . DIRECTORY_SEPARATOR . "corbeille" .DIRECTORY_SEPARATOR. $_POST['delete']);
+    if(isset($_SESSION['$arrayDelete'])){
+      $arrayDelete = $_SESSION['$arrayDelete'];
+    } else {
+      $arrayDelete = [];
+    }
+    $arrayDelete[$directoryDelete] = $pathCurrent;
+    var_dump($arrayDelete);
+    $_SESSION['$arrayDelete'] = $arrayDelete;
+    $src = $pathCurrent .DIRECTORY_SEPARATOR. $_POST['delete'];
+    $dest = $pathCurrent . DIRECTORY_SEPARATOR . "corbeille" .DIRECTORY_SEPARATOR. $_POST['delete'];
+    $functionnality->cutAndPast( $src,$dest);
+    var_dump($_SESSION['$arrayDelete']);
   }
 }
 
@@ -74,22 +83,26 @@ if(isset($_POST['past'])){
     $src = $_SESSION['copyPath'] .DIRECTORY_SEPARATOR. $_SESSION['copyDir'];
     $dest = $pathCurrent.DIRECTORY_SEPARATOR.$_SESSION['copyDir'];
     if(is_dir($src)){
-      copyDir($src,$dest);
+      $functionnality->copyDir($src,$dest);
     } else {
-      copy($src,$dest);
+      $functionnality->copy($src,$dest);
     }
   }
 }
 
 if(isset($_POST['restaure'])){
-  if(isset($_SESSION['deletePath']) && isset($_SESSION['deleteDir'])){
-    $dest = $_SESSION['deletePath'] .DIRECTORY_SEPARATOR.  $_SESSION['deleteDir'];
-    $src = $pathCurrent.DIRECTORY_SEPARATOR. $_SESSION['deleteDir'];
-    cutAndPast($src , $dest);
-    echo $src;
-    echo $dest;
+  if(isset($_SESSION['$arrayDelete'])){
+    var_dump($_SESSION['$arrayDelete']);
+    var_dump($_POST['restaure']);
+    foreach ($_SESSION['$arrayDelete'] as $key => $value) {
+      if ($_POST['restaure'] == $key){
+        $dest = $value .DIRECTORY_SEPARATOR. $key;
+        $src = $pathCurrent.DIRECTORY_SEPARATOR. $key;
+        $functionnality->cutAndPast($src , $dest);
+      }
+    }
   }
 }
 
 $_SESSION['redirection'] = true;
-//header('Location: index.php');
+header('Location: index.php');

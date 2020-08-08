@@ -139,6 +139,44 @@ body {
 }
 
 */
+/*
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}*/
 .modal {
   display: none;
   position: fixed;
@@ -179,6 +217,8 @@ body {
   font-weight: bold;
   margin-top: 6vh;
   margin-left: 2vh;
+  height: 50vh;
+  overflow-y: auto;
 }
 .nav-aside li {
   list-style: none;
@@ -189,7 +229,7 @@ body {
   font-size: 1vw;
   width: 50%;
   position: absolute;
-  margin-top: 13vh;
+  margin-top: 11vh;
 }
 .breadCrumbs ul {
   display: flex;
@@ -197,8 +237,8 @@ body {
   align-items: center;
 }
 .breadCrumbs ul li {
-  list-style: inside url("../images/right-arrow.svg");
-  margin-right: 2vw;
+  list-style: inside url("../images/enter.svg");
+  margin-right: 1vw;
 }
 
 .container {
@@ -228,7 +268,7 @@ body {
 .container-Aside {
   float: right;
   width: 15vw;
-  height: 100%;
+  height: 70vh;
   border-radius: 0 10px 10px 0;
   background-color: #e58787;
 }
@@ -270,7 +310,7 @@ body {
   text-align: center;
 }
 
-.function {
+.globalFunctionality {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -283,14 +323,14 @@ body {
   left: 2vw;
   padding: 1vw;
 }
-.function label {
+.globalFunctionality label {
   color: white;
   font-size: 1.1vw;
 }
-.function input {
+.globalFunctionality input {
   margin-bottom: 1vh;
 }
-.function button {
+.globalFunctionality button {
   background-color: transparent;
   color: white;
   font-weight: bold;
@@ -300,7 +340,7 @@ body {
   border-bottom: 1px solid #ECA8A8;
   padding-bottom: 1vh;
 }
-.function button:last-child {
+.globalFunctionality button:last-child {
   margin-top: 1vh;
   border: none;
 }
@@ -308,11 +348,16 @@ body {
 .directory-optionFolder {
   position: absolute;
   width: 10vw;
-  height: 15vh;
+  height: 18vh;
   border-radius: 10px;
   overflow: hidden;
   margin-left: 10vw;
   margin-top: -8vh;
+}
+
+.directory-optionFolder--trash {
+  margin-left: 1vw;
+  margin-top: 0vh;
 }
 
 .directory-optionFolder .directory-optionInnerFolder {
@@ -323,11 +368,8 @@ body {
   height: 20vh;
   clip-path: circle(4% at 9% 6%);
   transition: all 0.5s ease-in-out;
-}
-
-.directory-optionInnerFolder form {
-  margin-top: -1vh;
-  margin-left: 1vw;
+  flex-direction: column;
+  display: flex;
 }
 
 .directory-optionInnerFolder:hover {

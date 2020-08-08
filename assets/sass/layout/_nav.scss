@@ -3,26 +3,26 @@
   font-weight: bold;
   margin-top: 6vh;
   margin-left: 2vh;
+  height: 50vh;
+  overflow-y: auto;
   li{
     list-style: none;
     padding-left: 5vh;
   }
-
 }
-
 
 .breadCrumbs {
   font-size: 1vw;
   width: 50%;
   position: absolute;
-  margin-top: 13vh;
+  margin-top: 11vh;
   ul{
     display: flex;
     margin-bottom: 0;
     align-items: center;
     li {
-      list-style: inside url('../images/right-arrow.svg');
-      margin-right: 2vw;
+      list-style: inside url('../images/enter.svg');
+      margin-right: 1vw;
     }
   }
 }

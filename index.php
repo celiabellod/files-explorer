@@ -1,5 +1,4 @@
 <?php include 'header.php';
-      include '_functions.php';
 
 $url = getcwd();
 $arrayUrl = scandir($url);
@@ -14,8 +13,8 @@ if(!isset($_SESSION['currentPath'])) {
         $pathCurrent = getcwd() . DIRECTORY_SEPARATOR . $firstDirectory;
       } else {
         $pathCurrent = getcwd() . DIRECTORY_SEPARATOR . $firstDirectory;
-        mkdir($pathCurrent);
-        mkdir($pathCurrent .DIRECTORY_SEPARATOR. "corbeille");
+        mkdir($pathCurrent, 0700);
+        mkdir($pathCurrent .DIRECTORY_SEPARATOR. $deleteDirectory, 0700);
       }
   }
 }else if(isset($_SESSION['redirection'])){
@@ -29,29 +28,16 @@ $arrayUrl= scandir($pathCurrent);
 $arrayUrl= array_slice($arrayUrl, 2); // Without  et ..
 $_SESSION['currentPath'] = $pathCurrent;
 
-
-foreach ($arrayUrl as $value) {
-
-  if($value == "corbeille"){
-    echo"<div class='directory-trash'>
-          <form method='POST' action='logic.php'>
-            <button type='submit' name='directory' value='$value' form='navigation' class='button-folder'>
-              <img src='assets/images/trash.png' alt=''>
-            </button>
-          </form>
-          <p>$value</p>
-        </div>";
-    }
-}
+$showNav = new ShowNav();
 ?>
 
 
-<div class="container">
-  <form method="POST" id="navigation" action="logic.php">
+  <div class="container">
+
     <h1>Explorateur de fichier</h1>
 
-    <form method="POST" id="function" action="logic.php">
-        <div class="function">
+    <form method="POST" action="logic.php" id="function">
+      <div class="globalFunctionality">
           <div class="toggle toggle--daynight">
               <p>Elements masqués</p>
               <input type="hidden" id="toggle--daynight2" class="toggle--checkbox" name="showHideFile[]" value="hideFile">
@@ -64,33 +50,90 @@ foreach ($arrayUrl as $value) {
           </div>
 
           <label for="createFile">Nouveau</label>
-          <input type="text" name="create" id="create" pattern="[A-Za-z]{3,10}">
-          <button class="function-applicate" type="submit">Appliquer</button>
-          <button type="submit" name="past">Coller</button>
+          <input type="text" name="create" id="createFile" pattern="[A-Za-z]{3,10}">
 
-          </div>
+          <button type="submit" class="function-applicate" form="function">Appliquer</button>
 
-        </form>
+          <button type="submit" name="past" form="function">Coller</button>
+      </div>
+    </form>
 
 
-   <div class="breadCrumbs">
+
+  <form method="POST" action="logic.php" id="form1">
+
+    <?php
+        foreach ($arrayUrl as $value) {
+          if($value == "corbeille"){
+            echo $showNav->getTrash($value);
+          }
+        }
+    ?>
+
+    <div class="breadCrumbs">
      <ul>
-       <button type='submit' name='directory' value='start' form="navigation" class="button-folder"><img src="assets/images/directory-mini.png"  width='20px'></button>
-         <?php breadCrumbs($pathCurrent, $firstDirectory) ?>
+      <button type='submit' name='directory' value='start' form="form1" class="button-folder">
+        <img src="assets/images/folder-mini.png"  width='20px'>
+      </button>
+       <?php $showNav->breadCrumbs($pathCurrent, $firstDirectory) ?>
      </ul>
-   </div>
+    </div>
 
     <div class="container-directory">
-      <?php include '_showDirectory.php';?>
+      <?php
+
+        foreach ($arrayUrl as $value) {
+          if(isset($_SESSION['checked']) && $_SESSION['checked'] == "unchecked" || !isset($_SESSION['checked'])) {
+              echo $showNav->hideFile($value);
+          }
+          echo $showNav->getElement($value, $pathCurrent);
+        }
+      ?>
     </div>
 
     <div class="container-Aside">
-      <?php include '_navAside.php';?>
+      <div class="nav-aside">
+        <?php
+
+          $dir = '';//$arrayUrl[-1];
+
+          if(isset($_SESSION['navAsidePoint'])){
+            $navAsidePoint  = $_SESSION['navAsidePoint'];
+          } else {
+            $navAsidePoint  = '..' . DIRECTORY_SEPARATOR;
+            $_SESSION['navAsidePoint'] = $navAsidePoint;
+          }
+
+          $BASE = $navAsidePoint .  $firstDirectory;
+
+          echo "<div class='name-directoryStart'>
+                  <img src='assets/images/folder.png' width='40px'/>
+                  <span>Accueil</span>
+                </div><br/>";
+
+          $showNav->list_dir($BASE, $dir, 1);
+
+        ?>
+      </div>
     </div>
 
-  </form>
-</div>
+  </div>
+</form>
 
+
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="closet">&times;</span>
+    <?php
+      if(isset($_GET['open'])){
+        $file = $_GET['open'];
+        $ressource = fopen( $file, 'rb');
+        echo fgets($ressource);
+      }
+     ?>
+  </div>
+</div>
 
 
 
