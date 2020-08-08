@@ -59,6 +59,9 @@
   a+p{
     margin-top: 0.2vh;
   }
+  a>img{
+    width: 34px !important;
+  }
 }
 
 .aside {
@@ -109,7 +112,7 @@
   height: 18vh;
   border-radius: 10px;
   overflow: hidden;
-  margin-left: 10vw;
+  margin-left: 12vw;
   margin-top: -8vh;
 }
 
@@ -156,7 +159,6 @@
   opacity: 1;
   transition: 0.5s ease-in-out;
 }
-
 
 
 

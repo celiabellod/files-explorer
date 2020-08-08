@@ -50,7 +50,7 @@ $showNav = new ShowNav();
           </div>
 
           <label for="createFile">Nouveau</label>
-          <input type="text" name="create" id="createFile" pattern="[A-Za-z]{3,10}">
+          <input type="text" name="create" id="createFile" pattern="[A-Za-z.]{3,15}">
 
           <button type="submit" class="function-applicate" form="function">Appliquer</button>
 
@@ -84,9 +84,14 @@ $showNav = new ShowNav();
 
         foreach ($arrayUrl as $value) {
           if(isset($_SESSION['checked']) && $_SESSION['checked'] == "unchecked" || !isset($_SESSION['checked'])) {
-              echo $showNav->hideFile($value);
+            if ($value == strstr($value, '.')) {
+              $showNav->hideFile($value);
+            } else {
+              echo $showNav->getElement($value, $pathCurrent);
+            }
+          } else {
+            echo $showNav->getElement($value, $pathCurrent);
           }
-          echo $showNav->getElement($value, $pathCurrent);
         }
       ?>
     </div>
