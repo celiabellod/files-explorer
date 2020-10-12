@@ -24,6 +24,8 @@ h1 {
 body {
   background-image: url("../images/background.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
 }
 
 .toggle {
@@ -267,7 +269,7 @@ body {
   margin-top: 0.2vh;
 }
 .directory-folder a > img {
-  width: 34px !important;
+  width: 49px !important;
 }
 
 .aside {
@@ -318,8 +320,6 @@ body {
   height: 18vh;
   border-radius: 10px;
   overflow: hidden;
-  margin-left: 10vw;
-  margin-top: -8vh;
 }
 
 .directory-optionFolder--trash {
@@ -392,6 +392,85 @@ body {
 
 .container-close img:hover {
   filter: invert(100%);
+}
+
+@media (max-width: 700px) {
+  .container {
+    width: 73vw;
+    height: 70vh;
+    margin-left: 10vw;
+    margin-top: 0vh;
+  }
+
+  .container-directory {
+    width: 60vw;
+    margin-top: 20vh;
+    margin-left: 10vw;
+    height: 45vh;
+  }
+  .container-directory img {
+    width: 15vw;
+  }
+
+  .container-Aside {
+    display: none;
+  }
+
+  .globalFunctionality {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    background: #EF4D4D;
+    border-radius: 10px;
+    width: 50vw;
+    height: 20vh;
+    position: absolute;
+    top: 75vh;
+    left: 22vw;
+    padding: 1vw;
+  }
+  .globalFunctionality label {
+    color: white;
+    font-size: 1.5vw;
+  }
+  .globalFunctionality input {
+    margin-bottom: 1vh;
+  }
+  .globalFunctionality button {
+    background-color: transparent;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5vw;
+    border-bottom: 1px solid #ECA8A8;
+    padding-bottom: 1vh;
+  }
+  .globalFunctionality button:last-child {
+    margin-top: 1vh;
+    border: none;
+  }
+
+  .directory-optionFolder {
+    position: absolute;
+    width: 50vw;
+    height: 20vh;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .directory-optionInnerFolder button, .directory-optionInnerFolder input {
+    margin-top: 1vh;
+    margin-left: 5vw;
+  }
+
+  .directory-trash {
+    top: 4vh;
+    right: -20vw;
+  }
+  .directory-trash img {
+    width: 8vw;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
