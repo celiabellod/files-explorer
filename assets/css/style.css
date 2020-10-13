@@ -21,6 +21,11 @@ h1 {
   color: #de6969;
 }
 
+@media (max-width: 700px) {
+  h1 {
+    font-size: 5vw;
+  }
+}
 body {
   background-image: url("../images/background.jpg");
   background-size: cover;
@@ -415,6 +420,9 @@ body {
   .container-Aside {
     display: none;
   }
+  .container-Aside > p {
+    font-size: 4vw !important;
+  }
 
   .globalFunctionality {
     display: flex;
@@ -431,7 +439,7 @@ body {
   }
   .globalFunctionality label {
     color: white;
-    font-size: 1.5vw;
+    font-size: 4vw !important;
   }
   .globalFunctionality input {
     margin-bottom: 1vh;
@@ -442,7 +450,7 @@ body {
     font-weight: bold;
     border: none;
     cursor: pointer;
-    font-size: 1.5vw;
+    font-size: 4vw !important;
     border-bottom: 1px solid #ECA8A8;
     padding-bottom: 1vh;
   }
@@ -465,11 +473,19 @@ body {
   }
 
   .directory-trash {
-    top: 4vh;
+    top: 10vh;
     right: -20vw;
   }
   .directory-trash img {
     width: 8vw;
+  }
+
+  .directory-folder, .toggle p, .directory-trash p {
+    font-size: 4vw !important;
+  }
+
+  .directory-optionFolder .directory-optionInnerFolder {
+    width: 40vw;
   }
 }
 

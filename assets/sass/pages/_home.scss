@@ -192,7 +192,6 @@
     height: 70vh;
     margin-left: 10vw;
     margin-top: 0vh;
-
   }
 
   .container-directory{
@@ -208,6 +207,9 @@
   
   .container-Aside{
     display:none;
+    > p {
+      font-size: 4vw !important;
+    }
   }
 
   .globalFunctionality {
@@ -224,7 +226,7 @@
     padding: 1vw;
     label {
       color:white;
-      font-size: 1.5vw;
+      font-size: 4vw !important;
     }
     input {
       margin-bottom: 1vh;
@@ -235,7 +237,7 @@
       font-weight: bold;
       border: none;
       cursor: pointer;
-      font-size: 1.5vw;
+      font-size: 4vw !important;
       border-bottom: 1px solid #ECA8A8;
       padding-bottom: 1vh;
       &:last-child {
@@ -260,12 +262,22 @@
   }
 
   .directory-trash{
-    top:4vh;
+    top:10vh;
     right:-20vw;
     img{
       width: 8vw;
     }
   }
+
+  .directory-folder, .toggle p, .directory-trash p{
+    font-size: 4vw !important;
+
+  }
+
+  .directory-optionFolder .directory-optionInnerFolder{
+    width: 40vw;
+  }
+  
 
   
 }
