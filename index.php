@@ -101,9 +101,9 @@ $showNav = new ShowNav();
 
     <div class="container-Aside">
       <div class="nav-aside">
-        <?php
+        <!--<?php
 
-          $dir = '';//$arrayUrl[-1];
+          $dir = '';
 
           if(isset($_SESSION['navAsidePoint'])){
             $navAsidePoint  = $_SESSION['navAsidePoint'];
@@ -121,7 +121,7 @@ $showNav = new ShowNav();
 
           $showNav->list_dir($BASE, $dir, 1);
 
-        ?>
+        ?>-->
       </div>
     </div>
 
@@ -144,6 +144,7 @@ $showNav = new ShowNav();
      ?>
   </div>
 </div>
+
 
 
 <?php include 'footer.php' ?>
