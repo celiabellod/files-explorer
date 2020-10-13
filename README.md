@@ -1,3 +1,6 @@
+![alt text](capture.jpg) 
+
+
 ### Débuter le projet
 
 On récupere l'url de départ, on transforme l'url de départ en tableau.
@@ -19,9 +22,9 @@ $nameStartDirectory = "start"; //name of the first directory
 
 
     - Si au rechargement de la page la valeur envoyée du formulaire est égal à un changement de dossier
-    Alors verifi si le dossier demandé ce trouve déjà dans l'url :
+    Alors on verifi si le dossier demandé ce trouve déjà dans l'url :
       - Si le dossier est dans l'url alors on cherche sa position puis on enleve tous ce qui se trouve après et on crée une nouvelle url et le dossier demandé est ouvert
-      - Si le dossier n'est pas dans l'url alors on ajoute le dossier a l'url et on ouvre le dossier demandé
+      - Si le dossier n'est pas dans l'url alors on ajoute le dossier à l'url et on ouvre le dossier demandé
 
     - Si la valeur du formulaire est égal à la valeur de la case à cocher alors on reste dans le dossier déjà présent
 
@@ -29,7 +32,7 @@ $nameStartDirectory = "start"; //name of the first directory
     Alors le chemin est crée depuis l'url de départ et le dossier start est ajouté au chemin puis le dossier est ouvert.
 
 
-  - Si le dossier de départ ne se trouve pas dans l'architecture de l'explorateur alors le dossier est crée à partir de l'url de base, le dossier de début est ajouté au chemin.  Puis on se rend dans le dossier.
+  - Si le dossier de départ ne se trouve pas dans l'architecture de l'explorateur alors le dossier est crée à partir de l'url de base, le dossier de début est ajouté au chemin. Puis on se rend dans le dossier.
 
 
 ```
@@ -142,18 +145,18 @@ if($url == FALSE){ // if url return false
 
 
 ### Pour afficher le fil d'ariane :
-    On parcours le tableau de l'url courante a partir du dossier start et on affiche toute les valeurs.
+    On parcours le tableau de l'url courante à partir du dossier start et on affiche toute les valeurs.
 
     ```
     <?php
-    foreach ($BreadCrumbsFromStart as $value) {
-      echo "<li>$value</li>";
-    }
+      foreach ($BreadCrumbsFromStart as $value) {
+        echo "<li>$value</li>";
+      }
     ?>
     ```
 
 ### Pour la navigation sur le côté :
-  Une fonction est crée qui parcours l'architecture des dossiers et sous dossiers à partir du dossier de départ.
+  Une fonction est créée qui parcours l'architecture des dossiers et sous dossiers à partir du dossier de départ.
 
   ```
   function mkmap($dir){
